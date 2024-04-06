@@ -46,6 +46,10 @@ $ node main.js
 JavaScript with Node.js (javascript/node):
 $ node main.js
 
+JavaScript with Vue.js (javascript/vue):
+$ yarn serve
+Then visit the link http://localhost:8080
+
 Kotlin (kotlin):
 $ kotlinc main.kt -include-runtime -d main.jar
 $ java -jar main.jar
@@ -78,6 +82,9 @@ $ scala main.scala
 
 Swift (swift):
 $ swift main.swift
+
+TypeScript with Angular (typescript/angular):
+$ ng serve --open
 
 TypeScript with Node.js (typescript/node):
 $ tsc main.ts
