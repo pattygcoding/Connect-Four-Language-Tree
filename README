@@ -43,6 +43,10 @@ $ node main.js
 JavaScript with MongoDB & NoSQL (javascript/mongodb-nosql):
 $ node main.js
 
+JavaScript with Next.js (javascript/next):
+$ npm run dev
+Then visit the link http://localhost:3000/main
+
 JavaScript with Node.js (javascript/node):
 $ node main.js
 
