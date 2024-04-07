@@ -1,0 +1,3 @@
+Note from Patrick Goodwin:
+
+IntelliJ does not support SpringBoot without a subscription to IntelliJ Ultimate. However, I have worked with SpringBoot before, and will show a concept of how it would play out with a Connect Four game in this directory.
