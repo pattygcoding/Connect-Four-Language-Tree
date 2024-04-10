@@ -48,36 +48,58 @@ public:
 
     // Check if the last move resulted in a win
     bool checkWin() const {
-        char piece = (currentPlayer == 1) ? 'X' : 'O';
+            char piece = (currentPlayer == 1) ? 'X' : 'O';
 
-        // Check horizontal
-        for (int i = 0; i < ROWS; i++) {
-            for (int j = 0; j <= COLS - 4; j++) {
-                if (board[i][j] == piece &&
-                    board[i][j+1] == piece &&
-                    board[i][j+2] == piece &&
-                    board[i][j+3] == piece) {
-                    return true;
+            // Check horizontal
+            for (int i = 0; i < ROWS; i++) {
+                for (int j = 0; j <= COLS - 4; j++) {
+                    if (board[i][j] == piece &&
+                        board[i][j+1] == piece &&
+                        board[i][j+2] == piece &&
+                        board[i][j+3] == piece) {
+                        return true;
+                    }
                 }
             }
-        }
 
-        // Check vertical
-        for (int j = 0; j < COLS; j++) {
+            // Check vertical
+            for (int j = 0; j < COLS; j++) {
+                for (int i = 0; i <= ROWS - 4; i++) {
+                    if (board[i][j] == piece &&
+                        board[i+1][j] == piece &&
+                        board[i+2][j] == piece &&
+                        board[i+3][j] == piece) {
+                        return true;
+                    }
+                }
+            }
+
+            // Check diagonal (both directions)
             for (int i = 0; i <= ROWS - 4; i++) {
-                if (board[i][j] == piece &&
-                    board[i+1][j] == piece &&
-                    board[i+2][j] == piece &&
-                    board[i+3][j] == piece) {
-                    return true;
+                for (int j = 0; j <= COLS - 4; j++) {
+                    if (board[i][j] == piece &&
+                        board[i+1][j+1] == piece &&
+                        board[i+2][j+2] == piece &&
+                        board[i+3][j+3] == piece) {
+                        return true;
+                    }
                 }
             }
+
+            // Check anti-diagonal (both directions)
+            for (int i = 0; i <= ROWS - 4; i++) {
+                for (int j = COLS - 1; j >= 3; j--) {
+                    if (board[i][j] == piece &&
+                        board[i+1][j-1] == piece &&
+                        board[i+2][j-2] == piece &&
+                        board[i+3][j-3] == piece) {
+                        return true;
+                    }
+                }
+            }
+
+            return false;
         }
-
-        // TODO: Implement diagonal and anti-diagonal checks
-
-        return false;
-    }
 
     // Check if the board is full (draw condition)
     bool boardFull() const {
