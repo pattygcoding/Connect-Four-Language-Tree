@@ -28,6 +28,7 @@ class Connect4
     private void DisplayBoard()
     {
         Console.WriteLine();
+        Console.WriteLine("  1   2   3   4   5   6   7");
         for (int row = 0; row < Rows; row++)
         {
             for (int col = 0; col < Cols; col++)
@@ -37,7 +38,6 @@ class Connect4
             Console.WriteLine("|");
         }
         Console.WriteLine(new string('-', 4 * Cols + 1));
-        Console.WriteLine("  1   2   3   4   5   6   7");
     }
 
     private bool DropPiece(int col)
@@ -94,10 +94,39 @@ class Connect4
             }
         }
 
-        // TODO: Implement diagonal and anti-diagonal checks
+        // Check diagonal (top-left to bottom-right)
+        for (int row = 0; row <= Rows - 4; row++)
+        {
+            for (int col = 0; col <= Cols - 4; col++)
+            {
+                if (board[row, col] == playerPiece &&
+                    board[row + 1, col + 1] == playerPiece &&
+                    board[row + 2, col + 2] == playerPiece &&
+                    board[row + 3, col + 3] == playerPiece)
+                {
+                    return true;
+                }
+            }
+        }
+
+        // Check anti-diagonal (bottom-left to top-right)
+        for (int row = Rows - 1; row >= 3; row--)
+        {
+            for (int col = 0; col <= Cols - 4; col++)
+            {
+                if (board[row, col] == playerPiece &&
+                    board[row - 1, col + 1] == playerPiece &&
+                    board[row - 2, col + 2] == playerPiece &&
+                    board[row - 3, col + 3] == playerPiece)
+                {
+                    return true;
+                }
+            }
+        }
 
         return false;
     }
+
 
     public void Play()
     {
