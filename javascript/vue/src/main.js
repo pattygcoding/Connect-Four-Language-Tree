@@ -2,6 +2,7 @@
 
 import Vue from 'vue';
 
+
 const Player = {
   None: 0,
   One: 1,
@@ -48,8 +49,40 @@ new Vue({
       }
     },
     checkWin(row, col) {
-      // Implement win checking logic
-      // Left as an exercise (check for horizontal, vertical, and diagonal wins)
+      const directions = [
+        [0, 1],
+        [1, 0],
+        [1, 1],
+        [-1, 1]
+      ];
+
+      for (const [dx, dy] of directions) {
+        let consecutiveChips = 1;
+
+        // Check in one direction
+        let newRow = row + dx;
+        let newCol = col + dy;
+        while (newRow >= 0 && newRow < this.rows && newCol >= 0 && newCol < this.cols && this.board[newRow][newCol] === this.currentPlayer) {
+          consecutiveChips++;
+          newRow += dx;
+          newCol += dy;
+        }
+
+        // Check in the opposite direction
+        newRow = row - dx;
+        newCol = col - dy;
+        while (newRow >= 0 && newRow < this.rows && newCol >= 0 && newCol < this.cols && this.board[newRow][newCol] === this.currentPlayer) {
+          consecutiveChips++;
+          newRow -= dx;
+          newCol -= dy;
+        }
+
+        // Check if there are four consecutive chips
+        if (consecutiveChips >= 4) {
+          return true;
+        }
+      }
+
       return false;
     },
     restartGame() {
