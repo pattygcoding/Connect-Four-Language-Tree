@@ -1,113 +1,79 @@
 class ConnectFour
   ROWS = 6
   COLS = 7
-  EMPTY = ' '
-  PLAYER1 = 'X'
-  PLAYER2 = 'O'
+  EMPTY = '.'
+  PLAYERS = ['X', 'O']
 
   def initialize
     @board = Array.new(ROWS) { Array.new(COLS, EMPTY) }
-    @player1_turn = true
-  end
-
-  def display_board
-    puts " 1 2 3 4 5 6 7"
-    @board.each do |row|
-      puts "|" + row.join("|") + "|"
-    end
-    puts "---------------"
-  end
-
-  def drop_piece(col)
-    (ROWS - 1).downto(0) do |row|
-      if @board[row][col] == EMPTY
-        @board[row][col] = @player1_turn ? PLAYER1 : PLAYER2
-        return true
-      end
-    end
-    false # Column is full
-  end
-
-  def check_win(row, col)
-    player = @board[row][col]
-
-    # Check vertical
-    count = 0
-    (row...ROWS).each do |r|
-      if @board[r][col] == player
-        count += 1
-      else
-        break
-      end
-    end
-    return true if count >= 4
-
-    # Check horizontal
-    count = 0
-    (0...COLS).each do |c|
-      if @board[row][c] == player
-        count += 1
-      else
-        count = 0
-      end
-      return true if count >= 4
-    end
-
-    # Check diagonal (bottom-left to top-right)
-    count = 0
-    (row...ROWS).each_with_index do |r, index|
-      c = col + index
-      break if c >= COLS
-      if @board[r][c] == player
-        count += 1
-      else
-        count = 0
-      end
-      return true if count >= 4
-    end
-
-    # Check diagonal (top-left to bottom-right)
-    count = 0
-    (row).downto(0).each_with_index do |r, index|
-      c = col + index
-      break if c >= COLS
-      if @board[r][c] == player
-        count += 1
-      else
-        count = 0
-      end
-      return true if count >= 4
-    end
-
-    false
+    @current_player = 0
   end
 
   def play
-    loop do
+    until game_over?
       display_board
-
-      current_player = @player1_turn ? PLAYER1 : PLAYER2
-      puts "Player #{current_player}'s turn."
-
-      loop do
-        print "Enter column (1-7): "
-        col = gets.chomp.to_i - 1
-        if col >= 0 && col < COLS && drop_piece(col)
-          break
-        else
-          puts "Invalid move. Please try again."
-        end
-      end
-
-      row = @board.find_index { |row| row[col] != EMPTY }
-      if check_win(row, col)
+      col = get_column
+      row = place_piece(col)
+      if winning_move?(row, col)
         display_board
-        puts "Player #{current_player} wins!"
-        break
+        puts "Player #{PLAYERS[@current_player]} wins!"
+        return
       end
-
-      @player1_turn = !@player1_turn
+      switch_player
     end
+    puts "The game is a draw!"
+  end
+
+  private
+
+  def display_board
+    puts '1 2 3 4 5 6 7'
+    @board.each { |row| puts row.join(' ') }
+  end
+
+  def get_column
+    loop do
+      print "Player #{PLAYERS[@current_player]}, enter a column (1-7): "
+      col = gets.to_i - 1
+      return col if col.between?(0, COLS - 1) && @board[0][col] == EMPTY
+      puts "Invalid input, please try again."
+    end
+  end
+
+  def place_piece(col)
+    (ROWS - 1).downto(0) do |row|
+      if @board[row][col] == EMPTY
+        @board[row][col] = PLAYERS[@current_player]
+        return row
+      end
+    end
+  end
+
+  def winning_move?(row, col)
+    piece = PLAYERS[@current_player]
+    directions = [[1, 0], [0, 1], [1, 1], [1, -1]]
+    directions.any? do |dx, dy|
+      line_length(row, col, dx, dy) + line_length(row, col, -dx, -dy) >= 3
+    end
+  end
+
+  def line_length(row, col, dx, dy)
+    length = 0
+    loop do
+      row += dx
+      col += dy
+      break unless row.between?(0, ROWS - 1) && col.between?(0, COLS - 1) && @board[row][col] == PLAYERS[@current_player]
+      length += 1
+    end
+    length
+  end
+
+  def switch_player
+    @current_player = 1 - @current_player
+  end
+
+  def game_over?
+    @board.flatten.none?(EMPTY) || winning_move?(-1, -1)
   end
 end
 
