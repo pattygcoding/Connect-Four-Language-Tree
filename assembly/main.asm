@@ -1,15 +1,17 @@
+; NOTE FROM Patrick Goodwin This code is currently WIP to fix some prior issues.
+
 section .data
     ROWS        equ 6
     COLS        equ 7
     EMPTY       equ ' '
     PLAYER1     equ 'X'
     PLAYER2     equ 'O'
-    PROMPT      db 'Player %c\'s turn. Enter column (1-7): ', 0
-    WIN_MSG     db 'Player %c wins!', 0
-    DRAW_MSG    db 'It\'s a draw! The board is full.', 0
+    PROMPT      db "Player %c\'s turn. Enter column (1-7): ", 0  ; Incorrect escape for single quote
+    WIN_MSG     db "Player %c wins!", 0
+    DRAW_MSG    db "It\'s a draw! The board is full.", 0       ; Incorrect escape for single quote
 
 section .bss
-    board       resb ROWS * COLS       ; Game board
+    board       resb ROWS * COLS       ; Game board is allocated
 
 section .text
     global _start
@@ -17,6 +19,23 @@ section .text
 _start:
     ; Initialize the board
     call initializeBoard
+
+getPlayerInput:
+    mov eax, 4                  ; sys_write syscall
+    mov ebx, 1                  ; file descriptor 1 (stdout)
+    lea ecx, [prompt]           ; Load the address of the prompt message
+    mov edx, 38                 ; Length of the prompt message
+    int 0x80                    ; Interrupt to display the prompt
+
+    mov eax, 3                  ; sys_read syscall
+    mov ebx, 0                  ; file descriptor 0 (stdin)
+    lea ecx, [inputBuffer]      ; Load the address of the input buffer
+    mov edx, 1                  ; Read one character
+    int 0x80                    ; Interrupt to read the input
+
+    movzx eax, byte [inputBuffer] ; Move the input character into EAX, zero-extended
+    sub eax, '0'                ; Convert ASCII character to integer (assuming valid input)
+    ret
 
     ; Main game loop
 gameLoop:
@@ -100,64 +119,3 @@ displayRow:
     pop ecx         ; Restore outer loop counter
     loop displayRow
     ret
-
-getPlayerInput:
-    ; Prompt player for input
-    mov eax, 4
-    mov ebx, 1
-    mov ecx, PROMPT
-    int 0x80
-
-    ; Read player input (column number)
-    mov eax, 3
-    mov ebx, 0
-    lea ecx, [esi]  ; Input buffer (reuse esi)
-    mov edx, 2      ; Read up to 2 bytes (column + newline)
-    int 0x80
-
-    ; Convert column input to 0-based index
-    sub byte [esi], '1'
-    ret
-
-checkWin:
-    ; Check horizontal
-    mov edi, board
-    mov ecx, ROWS
-horizLoop:
-    push ecx        ; Save outer loop counter
-    mov esi, edi    ; Point esi to current row
-    mov ecx, COLS - 3
-horizCheck:
-    cmpsb           ; Compare four consecutive characters
-    jne notHorizWin
-    loop horizCheck
-    ; Horizontal win found
-    pop ecx         ; Restore outer loop counter
-    ret
-notHorizWin:
-    pop ecx         ; Restore outer loop counter
-    loop horizLoop
-    ret
-
-isBoardFull:
-    ; Check if the board is full
-    mov esi, board
-    mov ecx, ROWS * COLS
-    xor al, al      ; Empty flag
-isFullLoop:
-    lodsb           ; Load next board cell
-    cmp al, EMPTY
-    jne notFull
-    dec ecx         ; Decrement counter if empty cell found
-    jnz isFullLoop
-    ; Board is full (counter reached zero)
-    mov al, 1
-    ret
-notFull:
-    xor al, al      ; Reset to zero
-    ret
-
-section .data
-    prompt      db 'Player %c\'s turn. Enter column (1-7): ', 0
-    winMsg      db 'Player %c wins!', 0
-    drawMsg     db 'It\'s a draw! The board is full.', 0
