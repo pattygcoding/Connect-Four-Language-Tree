@@ -24,7 +24,7 @@ program ConnectFour
         call displayBoard(board)
 
         ! Get player's move
-        print *, 'Player ', currentPlayer, ''s turn. Enter column (1-7): '
+        print *, 'Player ', currentPlayer, 's turn. Enter column (1-7): '
         read(*, *) col
 
         ! Drop the player's piece into the board
@@ -40,7 +40,7 @@ program ConnectFour
                 ! Check for draw condition
                 if (isBoardFull(board)) then
                     call displayBoard(board)
-                    print *, 'It\'s a draw! The board is full.'
+                    print *, 'Its a draw! The board is full.'
                     gameOver = .true.
                 else
                     ! Switch player
@@ -71,16 +71,25 @@ contains
     end subroutine initializeBoard
 
     ! Subroutine to display the game board
-    subroutine displayBoard(board)
-        character(len=1), intent(in) :: board(rows, cols)
-        integer :: i, j
+subroutine displayBoard(board)
+    character(len=1), intent(in) :: board(rows, cols)
+    integer :: i, j
 
-        print *, ' 1 2 3 4 5 6 7'
-        do i = 1, rows
-            print '("|", A7)', (board(i, j), j = 1, cols)
+    print *, '1 2 3 4 5 6 7'
+    do i = 1, rows
+        ! Start the row with a separator
+        write(*, '(A)', advance='no') '|'
+        ! Loop over each column in the row
+        do j = 1, cols
+            ! Print each board cell followed by a separator, without advancing to the next line
+            write(*, '(A, A)', advance='no') board(i, j), '|'
         end do
-        print *, '---------------'
-    end subroutine displayBoard
+        ! After finishing the row, advance to the next line
+        print *
+    end do
+    print *, '---------------'
+end subroutine displayBoard
+
 
     ! Function to check if a move is valid
     logical function isValidMove(board, col)
