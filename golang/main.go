@@ -1,151 +1,131 @@
 package main
 
 import (
+	"bufio"
 	"fmt"
 	"os"
 	"strconv"
+	"strings"
 )
 
 const (
-	rows   = 6
-	cols   = 7
-	empty  = ' '
-	player1 = 'X'
-	player2 = 'O'
+	rows = 6
+	cols = 7
 )
 
-type ConnectFour struct {
-	board         [][]rune
-	player1Turn   bool
-	lastMoveRow   int
-	lastMoveCol   int
-}
-
-func NewConnectFour() *ConnectFour {
-	board := make([][]rune, rows)
-	for i := range board {
-		board[i] = make([]rune, cols)
-		for j := range board[i] {
-			board[i][j] = empty
-		}
-	}
-	return &ConnectFour{
-		board:       board,
-		player1Turn: true,
-	}
-}
-
-func (game *ConnectFour) DisplayBoard() {
-	for _, row := range game.board {
-		fmt.Println(string(row))
-	}
-	fmt.Println("1 2 3 4 5 6 7")
-	fmt.Println()
-}
-
-func (game *ConnectFour) DropPiece(col int) bool {
-	for row := rows - 1; row >= 0; row-- {
-		if game.board[row][col] == empty {
-			if game.player1Turn {
-				game.board[row][col] = player1
-			} else {
-				game.board[row][col] = player2
-			}
-			game.lastMoveRow = row
-			game.lastMoveCol = col
-			return true
-		}
-	}
-	return false // Column is full
-}
-
-func (game *ConnectFour) CheckWin() bool {
-	player := game.board[game.lastMoveRow][game.lastMoveCol]
-
-	// Check vertical
-	count := 0
-	for r := game.lastMoveRow; r < rows; r++ {
-		if game.board[r][game.lastMoveCol] == player {
-			count++
-		} else {
-			break
-		}
-	}
-	if count >= 4 {
-		return true
-	}
-
-	// Check horizontal
-	count = 0
-	for c := 0; c < cols; c++ {
-		if game.board[game.lastMoveRow][c] == player {
-			count++
-		} else {
-			count = 0
-		}
-		if count >= 4 {
-			return true
-		}
-	}
-
-	// Check diagonal (bottom-left to top-right)
-	count = 0
-	for r, c := game.lastMoveRow, game.lastMoveCol; r < rows && c < cols; r, c = r+1, c+1 {
-		if game.board[r][c] == player {
-			count++
-		} else {
-			count = 0
-		}
-		if count >= 4 {
-			return true
-		}
-	}
-
-	// Check diagonal (top-left to bottom-right)
-	count = 0
-	for r, c := game.lastMoveRow, game.lastMoveCol; r >= 0 && c < cols; r, c = r-1, c+1 {
-		if game.board[r][c] == player {
-			count++
-		} else {
-			count = 0
-		}
-		if count >= 4 {
-			return true
-		}
-	}
-
-	return false
-}
+var (
+	playerTokens = [2]string{"X", "O"}
+)
 
 func main() {
-	game := NewConnectFour()
-
-	for {
-		game.DisplayBoard()
-
-		var currentPlayer rune
-		if game.player1Turn {
-			currentPlayer = player1
-		} else {
-			currentPlayer = player2
+	board := make([][]string, rows)
+	for i := range board {
+		board[i] = make([]string, cols)
+		for j := range board[i] {
+			board[i][j] = " "
 		}
-		fmt.Printf("Player %c's turn. Enter column (1-7): ", currentPlayer)
+	}
 
-		var col int
-		fmt.Scanln(&col)
-		col-- // Convert to zero-based index
+	currentPlayer := 0
+	gameOver := false
+	scanner := bufio.NewScanner(os.Stdin)
 
-		if col < 0 || col >= cols || !game.DropPiece(col) {
-			fmt.Println("Invalid move. Please try again.")
+	for !gameOver {
+		printBoard(board)
+		fmt.Printf("Player %d's turn (%s). Enter column (1-%d): ", currentPlayer+1, playerTokens[currentPlayer], cols)
+		scanner.Scan()
+		input := scanner.Text()
+		col, err := strconv.Atoi(strings.TrimSpace(input))
+		if err != nil || col < 1 || col > cols {
+			fmt.Println("Invalid column. Try again.")
+			continue
+		}
+		col-- // Adjust for zero-indexed slice
+
+		if !dropPiece(board, col, playerTokens[currentPlayer]) {
+			fmt.Println("Column is full. Try another one.")
 			continue
 		}
 
-		if game.CheckWin() {
-			game.DisplayBoard()
-			fmt.Printf("Player %c wins!\n", currentPlayer)
-			break
+		if checkWin(board, playerTokens[currentPlayer]) {
+			printBoard(board)
+			fmt.Printf("Player %d wins!\n", currentPlayer+1)
+			gameOver = true
+		} else if isBoardFull(board) {
+			printBoard(board)
+			fmt.Println("It's a draw!")
+			gameOver = true
 		}
 
-		game.player1Turn = !game.player1Turn
+		currentPlayer = 1 - currentPlayer // Switch player
 	}
+}
+
+func printBoard(board [][]string) {
+	fmt.Println("\n 1 2 3 4 5 6 7")
+	for _, row := range board {
+		fmt.Print("|")
+		for _, cell := range row {
+			fmt.Printf("%s|", cell)
+		}
+		fmt.Println()
+	}
+	fmt.Println("---------------")
+}
+
+func dropPiece(board [][]string, col int, playerToken string) bool {
+	for i := rows - 1; i >= 0; i-- {
+		if board[i][col] == " " {
+			board[i][col] = playerToken
+			return true
+		}
+	}
+	return false
+}
+
+func checkWin(board [][]string, playerToken string) bool {
+	// Check horizontal
+	for i := 0; i < rows; i++ {
+		for j := 0; j < cols-3; j++ {
+			if board[i][j] == playerToken && board[i][j+1] == playerToken && board[i][j+2] == playerToken && board[i][j+3] == playerToken {
+				return true
+			}
+		}
+	}
+	// Check vertical
+	for i := 0; i < rows-3; i++ {
+		for j := 0; j < cols; j++ {
+			if board[i][j] == playerToken && board[i+1][j] == playerToken && board[i+2][j] == playerToken && board[i+3][j] == playerToken {
+				return true
+			}
+		}
+	}
+	// Check diagonal (bottom left to top right)
+	for i := 3; i < rows; i++ {
+		for j := 0; j < cols-3; j++ {
+			if board[i][j] == playerToken && board[i-1][j+1] == playerToken && board[i-2][j+2] == playerToken && board[i-3][j+3] == playerToken {
+				return true
+			}
+		}
+	}
+	// Check diagonal (top left to bottom right)
+	for i := 0; i < rows-3; i++ {
+		for j := 0; j < cols-3; j++ {
+			if board[i][j] == playerToken && board[i+1][j+1] == playerToken && board[i+2][j+2] == playerToken && board[i+3][j+3] == playerToken {
+				return true
+			}
+		}
+	}
+	return false
+}
+
+func isBoardFull(board [][]string) bool {
+	for i := 0; i < rows; i++ {
+		for j := 0; j < cols; j++ {
+			if board[i][j] == " " {
+				return false
+			}
+		}
+	}
+	return true
 }
