@@ -77,6 +77,9 @@ $ python main.py
 Python with JSON (python):
 $ python main.py
 
+Python with tkinter (python):
+$ python main.py
+
 Ruby (ruby):
 $ ruby main.rb
 
