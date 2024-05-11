@@ -38,13 +38,62 @@ export default {
         },
         aiMove() {
             setTimeout(() => {
-                let validMove = false;
-                while (!validMove) {
-                    const colIndex = Math.floor(Math.random() * 7);  // Random column index
-                    validMove = this.placePiece(colIndex, this.currentPlayer);
-                }
+                const bestMove = this.getBestMove(this.currentPlayer);
+                this.placePiece(bestMove, this.currentPlayer);
                 this.isPlayerTurn = true;  // Hand back the turn to the player
             }, 1000);  // AI move delay of 1 second
+        },
+
+        getBestMove(player) {
+            let bestScore = -Infinity;
+            let move = 0;
+            for (let col = 0; col < 7; col++) {
+                if (this.canPlacePiece(col)) {
+                    this.placePiece(col, player);
+                    let score = this.minimax(0, false);
+                    this.undoMove(col);  // Remove the piece after calculation
+                    if (score > bestScore) {
+                        bestScore = score;
+                        move = col;
+                    }
+                }
+            }
+            return move;
+        },
+
+        minimax(depth, isMaximizingPlayer) {
+            const winner = this.checkForWinner();
+            if (winner !== null) {
+                return winner === this.currentPlayer ? 10 : -10;
+            }
+
+            if (isMaximizingPlayer) {
+                let maxEval = -Infinity;
+                for (let col = 0; col < 7; col++) {
+                    if (this.canPlacePiece(col)) {
+                        this.placePiece(col, this.currentPlayer);
+                        let evalu = this.minimax(depth + 1, false);
+                        this.undoMove(col);
+                        maxEval = Math.max(maxEval, evalu);
+                    }
+                }
+                return maxEval;
+            } else {
+                let minEval = Infinity;
+                for (let col = 0; col < 7; col++) {
+                    if (this.canPlacePiece(col)) {
+                        this.placePiece(col, this.opponent);
+                        let evalu = this.minimax(depth + 1, true);
+                        this.undoMove(col);
+                        minEval = Math.min(minEval, evalu);
+                    }
+                }
+                return minEval;
+            }
+        },
+        canPlacePiece(col) {
+            // Check if the topmost cell of the column is empty (assuming null or similar signifies empty)
+            return this.board[0][col] == null;
         },
 
         placePiece(colIndex, player) {
@@ -59,6 +108,15 @@ export default {
                 }
             }
             return false;  // Column full, unsuccessful placement
+        },
+        undoMove(col) {
+            // Iterate from the top of the column to find the first non-empty cell and clear it
+            for (let row = 0; row < this.board.length; row++) {
+                if (this.board[row][col] != null) {
+                    this.board[row][col] = null;
+                    break;  // Only remove the top-most piece
+                }
+            }
         },
 
         checkWinner(row, col) {
