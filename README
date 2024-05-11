@@ -10,6 +10,10 @@ C (c):
 $ gcc -o connect4 main.c
 $ ./connect4
 
+C with Windows (c/windows):
+$ gcc -o main.exe main.c -mwindows
+$ ./main.exe
+
 C# with .NET (c#):
 $ csc main.cs
 $ main.exe
@@ -77,7 +81,7 @@ $ python main.py
 Python with JSON (python):
 $ python main.py
 
-Python with tkinter (python):
+Python with tkinter (python/tkinter):
 $ python main.py
 
 Ruby (ruby):
