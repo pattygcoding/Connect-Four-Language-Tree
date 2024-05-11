@@ -62,7 +62,7 @@ JavaScript with Node.js (javascript/node):
 $ node main.js
 
 JavaScript with Vue.js (javascript/vue):
-$ yarn serve
+$ npm run serve
 Then visit the link http://localhost:8080
 
 Kotlin (kotlin):
