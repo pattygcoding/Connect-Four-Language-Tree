@@ -1,0 +1,20 @@
+<h1>Connect Four</h1>
+<% if @game.winner.present? %>
+  <h2>Player <%= @game.winner %> wins!</h2>
+<% else %>
+  <table class="connect-four">
+    <% @game.state.each_with_index do |row, i| %>
+      <tr>
+        <% row.each_with_index do |cell, j| %>
+          <td class="<%= 'connect-four-cell connect-four-player' + cell.to_s if cell %>">
+            <%= cell_text(cell) %>
+          </td>
+        <% end %>
+      </tr>
+    <% end %>
+  </table>
+  <% (0..6).each do |column| %>
+    <%= link_to "Drop in column #{column + 1}", game_path(@game, column: column), method: :patch %>
+  <% end %>
+<% end %>
+<%= link_to 'New Game', new_game_path %>
