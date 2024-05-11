@@ -1,26 +1,17 @@
+# app/controllers/games_controller.rb
 class GamesController < ApplicationController
-  before_action :set_game, only: [:show, :update]
-
-  def new
-    @game = Game.create
-    redirect_to @game
-  end
-
   def show
+    @game = Game.find(params[:id])
   end
 
   def update
-    if @game.drop_piece(params[:column].to_i)
-      redirect_to @game
-    else
-      flash[:alert] = "Invalid move or game over!"
-      redirect_to @game
-    end
-  end  
-
-  private
-
-  def set_game
     @game = Game.find(params[:id])
+    if @game.drop_piece(params[:column])
+      respond_to do |format|
+        format.js
+      end
+    else
+      render js: "alert('Invalid move!')"
+    end
   end
 end

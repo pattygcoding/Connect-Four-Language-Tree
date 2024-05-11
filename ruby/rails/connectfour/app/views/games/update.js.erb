@@ -1,0 +1,10 @@
+<!-- app/views/games/update.js.erb -->
+var board_html = "";
+<% @game.state.each_with_index do |row, i| %>
+  board_html += '<div>';
+  <% row.each_with_index do |cell, j| %>
+    board_html += '<%= link_to cell.present? ? (cell == 1 ? "X" : "O") : " ", game_path(@game, column: j), method: :put, remote: true %>';
+  <% end %>
+  board_html += '</div>';
+<% end %>
+document.getElementById('board').innerHTML = board_html;

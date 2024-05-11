@@ -1,4 +1,5 @@
+# config/routes.rb
 Rails.application.routes.draw do
-  resources :games, only: [:show, :new, :update]
-  root 'games#new'
+  root to: "games#show", id: 1  # Adjust the ID as needed or implement game creation
+  resources :games, only: [:show, :update]
 end

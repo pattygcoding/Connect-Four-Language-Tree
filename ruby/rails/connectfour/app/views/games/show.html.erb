@@ -2,19 +2,17 @@
 <% if @game.winner.present? %>
   <h2>Player <%= @game.winner %> wins!</h2>
 <% else %>
-  <table class="connect-four">
-    <% @game.state.each_with_index do |row, i| %>
-      <tr>
-        <% row.each_with_index do |cell, j| %>
-          <td class="<%= 'connect-four-cell connect-four-player' + cell.to_s if cell %>">
-            <%= cell_text(cell) %>
-          </td>
-        <% end %>
-      </tr>
-    <% end %>
-  </table>
-  <% (0..6).each do |column| %>
-    <%= link_to "Drop in column #{column + 1}", game_path(@game, column: column), method: :patch %>
+  <div id="board">
+  <% @game.state.each do |row| %>
+    <div>
+      <% row.each do |cell| %>
+        <%= cell.present? ? (cell == 1 ? "X" : "O") : "_" %> &nbsp;
+      <% end %>
+      <br/>
+    </div>
+  <% end %>
+</div>
+  <% 7.times do |column| %>
+    <%= button_to "Drop in column #{column}", game_path(@game, column: column), method: :put, remote: true %>
   <% end %>
 <% end %>
-<%= link_to 'New Game', new_game_path %>
