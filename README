@@ -65,6 +65,10 @@ JavaScript with Vue.js (javascript/vue):
 $ npm run serve
 Then visit the link http://localhost:8080
 
+JavaScript with Vue.js using AI (javascript/vueai):
+$ npm run serve
+Then visit the link http://localhost:8080
+
 Kotlin (kotlin):
 $ kotlinc main.kt -include-runtime -d main.jar
 $ java -jar main.jar
