@@ -22,6 +22,10 @@ C++ (c++):
 $ g++ -o connect4 main.cpp
 $ ./connect4
 
+C++ with Windows (c++/windows):
+$ g++ -o main.exe main.cpp -mwindows
+$ ./main.exe
+
 Fortran (fortran):
 $ gfortran -o ConnectFour main.f90
 $ ./ConnectFour
