@@ -1,0 +1,14 @@
+/*
+
+STRINGS:
+void estring(val): Initializes the empty string to a dynamic value.
+void string(val, str): Initializes the string to a dynamic value.
+int string_length(val): Return int of string length
+void string_add(val, str): Add a str to string.
+void string_addc(val, char): Add a char to string.
+void string_print(val): Print the string.
+void string_println(val): Print the string with a newline ending.
+
+VECTORS:
+
+*/
