@@ -1,12 +1,5 @@
 Instructions for running each program:
 
-Assembly (assembly):
-$ nasm -f elf64 main.asm -o main.o
-$ ld -s main.o -o main
-$ ./main
-$ rm main main.o
-IMPORTANT: This code only works on Linux and requires NASM to run. Additionally, the program will very likely crash if inputs are not handled correctly. While I made this program to show some of my knowledge with assembly, it is extremely bare-bones.
-
 C (c):
 $ gcc -o connect4 main.c
 $ ./connect4
@@ -14,10 +7,6 @@ $ ./connect4
 C with Windows (c/windows):
 $ gcc -o main.exe main.c -mwindows
 $ ./main.exe
-
-C#:
-$ csc main.cs
-$ main.exe
 
 C# with .NET (c#/ConnectFour):
 $ dotnet build
@@ -82,6 +71,10 @@ Objective-C (objective-c):
 $ clang -framework Foundation main.m -o ConnectFour
 $ ./ConnectFour
 
+OCaml (ocaml)
+$ ocamlc -o main main.ml
+$ ./main
+
 Perl (perl):
 $ perl main.pl
 
@@ -92,6 +85,9 @@ PHP from Web Browser (php):
 // WORK IN PROGRESS
 $ php -S localhost:8000
 Then visit http://localhost:8000/main.php
+
+Prolog (prolog):
+$ swipl -q -s main.pl
 
 Python (python):
 $ python main.py
@@ -126,3 +122,9 @@ $ node main.js
 
 VB.NET
 Only works on Windows Forms, but included here for concept
+
+x64 Assembly (assembly64):
+$ nasm -f elf64 main.asm -o main.o
+$ ld -s main.o -o main
+$ ./main
+$ rm main main.o
