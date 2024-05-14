@@ -15,9 +15,13 @@ C with Windows (c/windows):
 $ gcc -o main.exe main.c -mwindows
 $ ./main.exe
 
-C# with .NET (c#):
+C#:
 $ csc main.cs
 $ main.exe
+
+C# with .NET (c#/ConnectFour):
+$ dotnet build
+$ dotnet run
 
 C++ (c++):
 $ g++ -o connect4 main.cpp

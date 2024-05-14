@@ -1,0 +1,15 @@
+C:\Users\phgoodw\Desktop\Connect-Four-Language-Tree\c#\ConnectFour\bin\Debug\net6.0\ConnectFour.exe
+C:\Users\phgoodw\Desktop\Connect-Four-Language-Tree\c#\ConnectFour\bin\Debug\net6.0\ConnectFour.deps.json
+C:\Users\phgoodw\Desktop\Connect-Four-Language-Tree\c#\ConnectFour\bin\Debug\net6.0\ConnectFour.runtimeconfig.json
+C:\Users\phgoodw\Desktop\Connect-Four-Language-Tree\c#\ConnectFour\bin\Debug\net6.0\ConnectFour.dll
+C:\Users\phgoodw\Desktop\Connect-Four-Language-Tree\c#\ConnectFour\bin\Debug\net6.0\ConnectFour.pdb
+C:\Users\phgoodw\Desktop\Connect-Four-Language-Tree\c#\ConnectFour\obj\Debug\net6.0\ConnectFour.csproj.AssemblyReference.cache
+C:\Users\phgoodw\Desktop\Connect-Four-Language-Tree\c#\ConnectFour\obj\Debug\net6.0\ConnectFour.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\phgoodw\Desktop\Connect-Four-Language-Tree\c#\ConnectFour\obj\Debug\net6.0\ConnectFour.AssemblyInfoInputs.cache
+C:\Users\phgoodw\Desktop\Connect-Four-Language-Tree\c#\ConnectFour\obj\Debug\net6.0\ConnectFour.AssemblyInfo.cs
+C:\Users\phgoodw\Desktop\Connect-Four-Language-Tree\c#\ConnectFour\obj\Debug\net6.0\ConnectFour.csproj.CoreCompileInputs.cache
+C:\Users\phgoodw\Desktop\Connect-Four-Language-Tree\c#\ConnectFour\obj\Debug\net6.0\ConnectFour.dll
+C:\Users\phgoodw\Desktop\Connect-Four-Language-Tree\c#\ConnectFour\obj\Debug\net6.0\refint\ConnectFour.dll
+C:\Users\phgoodw\Desktop\Connect-Four-Language-Tree\c#\ConnectFour\obj\Debug\net6.0\ConnectFour.pdb
+C:\Users\phgoodw\Desktop\Connect-Four-Language-Tree\c#\ConnectFour\obj\Debug\net6.0\ConnectFour.genruntimeconfig.cache
+C:\Users\phgoodw\Desktop\Connect-Four-Language-Tree\c#\ConnectFour\obj\Debug\net6.0\ref\ConnectFour.dll
