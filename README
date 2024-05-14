@@ -75,6 +75,10 @@ OCaml (ocaml)
 $ ocamlc -o main main.ml
 $ ./main
 
+Pascal (pascal):
+$ fpc main.pas
+$ ./main
+
 Perl (perl):
 $ perl main.pl
 
@@ -128,3 +132,6 @@ $ nasm -f elf64 main.asm -o main.o
 $ ld -s main.o -o main
 $ ./main
 $ rm main main.o
+
+Bash (bash):
+Work in progress
