@@ -2,7 +2,7 @@ Instructions for running each program:
 
 Assembly (assembly):
 $ nasm -f elf64 main.asm -o main.o
-$ ld main.o -o main
+$ ld -s main.o -o main
 $ ./main
 $ rm main main.o
 IMPORTANT: This code only works on Linux and requires NASM to run. Additionally, the program will very likely crash if inputs are not handled correctly. While I made this program to show some of my knowledge with assembly, it is extremely bare-bones.
