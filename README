@@ -96,14 +96,16 @@ Ruby (ruby):
 $ ruby main.rb
 
 Rust (rust):
-$ rustc main.rs
-$ ./main
+$ cargo build
+$ ./target/debug/connect-four
+$ rm target/debug/connect-four
 
 Scala (scala):
 $ scala main.scala
 
 Swift (swift):
-$ swift main.swift
+$ swiftc main.swift -o main
+$ ./main
 
 TypeScript with Angular (typescript/angular):
 $ ng serve --open
