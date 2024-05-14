@@ -27,67 +27,34 @@ class ConnectFour {
         for ($row = self::ROWS - 1; $row >= 0; $row--) {
             if ($this->board[$row][$col] === self::EMPTY) {
                 $this->board[$row][$col] = $this->player1Turn ? self::PLAYER1 : self::PLAYER2;
-                return true;
+                return $row;
             }
         }
-        return false; // Column is full
+        return -1; // Column is full
     }
 
     public function checkWin($row, $col) {
         $player = $this->board[$row][$col];
+        return $this->checkDirection($row, $col, 0, 1, $player) || // Horizontal
+               $this->checkDirection($row, $col, 1, 0, $player) || // Vertical
+               $this->checkDirection($row, $col, 1, 1, $player) || // Diagonal \
+               $this->checkDirection($row, $col, 1, -1, $player);  // Diagonal /
+    }
 
-        // Check vertical
+    private function checkDirection($row, $col, $rowDir, $colDir, $player) {
         $count = 0;
-        for ($r = $row; $r < self::ROWS; $r++) {
-            if ($this->board[$r][$col] === $player) {
+        for ($i = -3; $i <= 3; $i++) {
+            $r = $row + $i * $rowDir;
+            $c = $col + $i * $colDir;
+            if ($r >= 0 && $r < self::ROWS && $c >= 0 && $c < self::COLS && $this->board[$r][$c] === $player) {
                 $count++;
-            } else {
-                break;
-            }
-        }
-        if ($count >= 4) {
-            return true;
-        }
-
-        // Check horizontal
-        $count = 0;
-        for ($c = 0; $c < self::COLS; $c++) {
-            if ($this->board[$row][$c] === $player) {
-                $count++;
+                if ($count === 4) {
+                    return true;
+                }
             } else {
                 $count = 0;
             }
-            if ($count >= 4) {
-                return true;
-            }
         }
-
-        // Check diagonal (bottom-left to top-right)
-        $count = 0;
-        for ($r = $row, $c = $col; $r < self::ROWS && $c < self::COLS; $r++, $c++) {
-            if ($this->board[$r][$c] === $player) {
-                $count++;
-            } else {
-                $count = 0;
-            }
-            if ($count >= 4) {
-                return true;
-            }
-        }
-
-        // Check diagonal (top-left to bottom-right)
-        $count = 0;
-        for ($r = $row, $c = $col; $r >= 0 && $c < self::COLS; $r--, $c++) {
-            if ($this->board[$r][$c] === $player) {
-                $count++;
-            } else {
-                $count = 0;
-            }
-            if ($count >= 4) {
-                return true;
-            }
-        }
-
         return false;
     }
 
@@ -101,16 +68,31 @@ class ConnectFour {
             do {
                 echo "Enter column (1-7): ";
                 $col = intval(fgets(STDIN)) - 1;
-            } while ($col < 0 || $col >= self::COLS || !$this->dropPiece($col));
+            } while ($col < 0 || $col >= self::COLS || ($row = $this->dropPiece($col)) === -1);
 
-            if ($this->checkWin(self::ROWS - 1, $col)) {
+            if ($this->checkWin($row, $col)) {
                 $this->displayBoard();
                 echo "Player $currentPlayer wins!\n";
                 break;
             }
 
+            if ($this->isBoardFull()) {
+                $this->displayBoard();
+                echo "The game is a draw!\n";
+                break;
+            }
+
             $this->player1Turn = !$this->player1Turn;
         }
+    }
+
+    private function isBoardFull() {
+        for ($col = 0; $col < self::COLS; $col++) {
+            if ($this->board[0][$col] === self::EMPTY) {
+                return false;
+            }
+        }
+        return true;
     }
 }
 

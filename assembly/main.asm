@@ -1,121 +1,148 @@
-; NOTE FROM Patrick Goodwin This code is currently WIP to fix some prior issues.
-
 section .data
-    ROWS        equ 6
-    COLS        equ 7
-    EMPTY       equ ' '
-    PLAYER1     equ 'X'
-    PLAYER2     equ 'O'
-    PROMPT      db "Player %c\'s turn. Enter column (1-7): ", 0  ; Incorrect escape for single quote
-    WIN_MSG     db "Player %c wins!", 0
-    DRAW_MSG    db "It\'s a draw! The board is full.", 0       ; Incorrect escape for single quote
+    board db '1234567', 10, '.......', 10, '.......', 10, '.......', 10, '.......', 10, '.......', 10, '.......', 10, 0
+    prompt db 'Player ', 0
+    player1 db '1', 0
+    player2 db '2', 0
+    newline db 10, 0
+    column_full db 'Column full, try another column.', 10, 0
+    invalid_input db 'Invalid input, try again.', 10, 0
+    victory db 'Player ', 0
+    win_message db ' wins!', 10, 0
 
 section .bss
-    board       resb ROWS * COLS       ; Game board is allocated
+    input resb 2
+    turn resb 1
+    current_player resb 1
 
 section .text
     global _start
 
 _start:
-    ; Initialize the board
-    call initializeBoard
+    ; Print initial board
+    mov rsi, board
+    call print_string
 
-getPlayerInput:
-    mov eax, 4                  ; sys_write syscall
-    mov ebx, 1                  ; file descriptor 1 (stdout)
-    lea ecx, [prompt]           ; Load the address of the prompt message
-    mov edx, 38                 ; Length of the prompt message
-    int 0x80                    ; Interrupt to display the prompt
+game_loop:
+    ; Set current player
+    movzx rax, byte [turn]
+    test rax, rax
+    jz set_player1
+    mov rsi, player2
+    jmp set_prompt
 
-    mov eax, 3                  ; sys_read syscall
-    mov ebx, 0                  ; file descriptor 0 (stdin)
-    lea ecx, [inputBuffer]      ; Load the address of the input buffer
-    mov edx, 1                  ; Read one character
-    int 0x80                    ; Interrupt to read the input
+set_player1:
+    mov rsi, player1
 
-    movzx eax, byte [inputBuffer] ; Move the input character into EAX, zero-extended
-    sub eax, '0'                ; Convert ASCII character to integer (assuming valid input)
+set_prompt:
+    ; Print prompt
+    mov rdx, rsi
+    mov rsi, prompt
+    call print_string
+    mov rsi, rdx
+    call print_string
+    call get_input
+
+    ; Check input
+    sub byte [input], '1'
+    jb invalid_move
+    cmp byte [input], 6
+    ja invalid_move
+
+    ; Update board
+    movzx rdi, byte [input]
+    call place_piece
+    test rax, rax
+    jz game_loop
+
+    ; Print updated board
+    mov rsi, board
+    call print_string
+
+    ; Check for victory
+    call check_victory
+    test rax, rax
+    jz switch_turn
+
+    ; Print victory message
+    mov rsi, victory
+    call print_string
+    mov rsi, current_player
+    call print_string
+    mov rsi, win_message
+    call print_string
+    jmp exit
+
+switch_turn:
+    ; Switch player turn
+    movzx rax, byte [turn]
+    xor rax, 1
+    mov [turn], al
+    jmp game_loop
+
+invalid_move:
+    mov rsi, invalid_input
+    call print_string
+    jmp game_loop
+
+place_piece:
+    ; Place piece in the column
+    imul rdi, rdi, 8
+    add rdi, 8
+
+find_row:
+    cmp byte [board + rdi], '.'
+    je place_here
+    sub rdi, 8
+    cmp rdi, 7
+    ja find_row
+    mov rax, 0
     ret
 
-    ; Main game loop
-gameLoop:
-    ; Display the board
-    call displayBoard
+place_here:
+    test byte [turn], 1
+    jz place_player1
+    mov byte [board + rdi], 'O'
+    jmp place_done
 
-    ; Determine current player
-    mov dl, PLAYER1
-    call getPlayerInput
+place_player1:
+    mov byte [board + rdi], 'X'
 
-    ; Check if current player wins
-    mov dl, PLAYER1
-    call checkWin
-    jnz playerWins
-
-    ; Check if the board is full (draw)
-    call isBoardFull
-    jnz gameOverDraw
-
-    ; Switch player
-    mov dl, PLAYER2
-    call getPlayerInput
-
-    ; Check if player 2 wins
-    mov dl, PLAYER2
-    call checkWin
-    jnz playerWins
-
-    ; Check if the board is full (draw)
-    call isBoardFull
-    jnz gameOverDraw
-
-    ; Continue game loop
-    jmp gameLoop
-
-playerWins:
-    ; Display win message
-    mov eax, 4
-    mov ebx, 1
-    mov ecx, WIN_MSG
-    call printf
-
-    ; Exit program
-    mov eax, 1
-    xor ebx, ebx
-    int 0x80
-
-gameOverDraw:
-    ; Display draw message
-    mov eax, 4
-    mov ebx, 1
-    mov ecx, DRAW_MSG
-    call printf
-
-    ; Exit program
-    mov eax, 1
-    xor ebx, ebx
-    int 0x80
-
-initializeBoard:
-    ; Clear the board
-    mov edi, board
-    mov ecx, ROWS * COLS
-    mov al, EMPTY
-    rep stosb
+place_done:
+    mov al, byte [rsi]
+    mov [current_player], al
+    mov rax, 1
     ret
 
-displayBoard:
-    ; Display the board
-    mov esi, board
-    mov ecx, ROWS
-displayRow:
-    push ecx        ; Save outer loop counter
-    mov ecx, COLS
-    mov edi, esi    ; Point edi to current row
-    rep movsb       ; Copy row to edi
-    mov eax, 4
-    mov ebx, 1
-    mov ecx, prompt
-    call printf
-    pop ecx         ; Restore outer loop counter
-    loop displayRow
+check_victory:
+    ; Placeholder for victory checking logic
+    mov rax, 0
     ret
+
+print_string:
+    ; Print string at rsi
+    mov rdx, rsi
+.print_loop:
+    lodsb
+    test al, al
+    jz .done
+    mov rdi, 1
+    mov rax, 1
+    syscall
+    jmp .print_loop
+.done:
+    ret
+
+get_input:
+    ; Read user input
+    mov rdi, 0
+    mov rax, 0
+    lea rsi, [input]
+    mov rdx, 2
+    syscall
+    ret
+
+exit:
+    ; Exit the program
+    mov rax, 60
+    xor rdi, rdi
+    syscall

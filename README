@@ -1,9 +1,10 @@
-Instructions for compiling each program:
+Instructions for running each program:
 
 Assembly (assembly):
-$ nasm -f elf32 main.asm -o main.o
-$ gcc -m32 main.o -o main
+$ nasm -f elf64 main.asm -o main.o
+$ ld main.o -o main
 $ ./main
+$ rm main main.o
 IMPORTANT: This code only works on Linux and requires NASM to run. Additionally, the program will very likely crash if inputs are not handled correctly. While I made this program to show some of my knowledge with assembly, it is extremely bare-bones.
 
 C (c):
@@ -82,6 +83,11 @@ $ perl main.pl
 
 PHP (php):
 $ php main.php
+
+PHP from Web Browser (php):
+// WORK IN PROGRESS
+$ php -S localhost:8000
+Then visit http://localhost:8000/main.php
 
 Python (python):
 $ python main.py
