@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Connect Four</title>
+    <style>
+        table { border-collapse: collapse; }
+        td { width: 50px; height: 50px; text-align: center; font-size: 24px; }
+        .empty { background-color: white; }
+        .R { background-color: red; }
+        .Y { background-color: yellow; }
+    </style>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            let gameId = "{{ game.id }}";
+            let player = 'R';
+
+            $('td').click(function() {
+                let col = $(this).index();
+                $.ajax({
+                    url: `/drop_disc/${gameId}/`,
+                    type: 'POST',
+                    data: {
+                        'col': col,
+                        'csrfmiddlewaretoken': '{{ csrf_token }}'
+                    },
+                    success: function(data) {
+                        let board = data.board;
+                        for (let row = 0; row < 6; row++) {
+                            for (let col = 0; col < 7; col++) {
+                                $('tr').eq(row).find('td').eq(col).attr('class', board[row][col] || 'empty');
+                            }
+                        }
+                        if (data.winner) {
+                            alert('Player ' + player + ' wins!');
+                        } else {
+                            player = (player == 'R') ? 'Y' : 'R';
+                        }
+                    }
+                });
+            });
+        });
+    </script>
+</head>
+<body>
+    <h1>Connect Four</h1>
+    <table>
+        {% for row in rows %}
+            <tr>
+                {% for col in cols %}
+                    <td class="empty"></td>
+                {% endfor %}
+            </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
