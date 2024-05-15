@@ -27,6 +27,9 @@ $ ./ConnectFour
 Golang (golang):
 $ go run main.go
 
+Groovy (groovy):
+$ groovy Main.groovy
+
 Haskell (haskell):
 $ ghc -o ConnectFour main.hs
 $ ./ConnectFour
