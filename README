@@ -1,5 +1,9 @@
 Instructions for running each program:
 
+Ada (ada):
+$ gnatmake main.adb
+$ ./main
+
 C (c):
 $ gcc -o connect4 main.c
 $ ./connect4
