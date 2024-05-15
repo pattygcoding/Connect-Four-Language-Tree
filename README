@@ -20,6 +20,9 @@ C++ with Windows (c++/windows):
 $ g++ -o main.exe main.cpp -mwindows
 $ ./main.exe
 
+Elixir (elixir):
+$ elixir main.exs
+
 Fortran (fortran):
 $ gfortran -o ConnectFour main.f90
 $ ./ConnectFour
