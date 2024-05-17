@@ -1,132 +1,121 @@
 section .data
-    board db ' 1   2   3   4   5   6   7 ', 10, \
-              '|   |   |   |   |   |   |   |', 10, \
-              '|   |   |   |   |   |   |   |', 10, \
-              '|   |   |   |   |   |   |   |', 10, \
-              '|   |   |   |   |   |   |   |', 10, \
-              '|   |   |   |   |   |   |   |', 10, \
-              '|   |   |   |   |   |   |   |', 10, \
-              '+---+---+---+---+---+---+---+', 10
-    len equ $ - board
+    board db ".......", 10, \
+              ".......", 10, \
+              ".......", 10, \
+              ".......", 10, \
+              ".......", 10, \
+              ".......", 10, \
+              "1234567", 10, 0  ; The board layout with newlines and a null terminator
+    prompt1 db "Player 1, enter column (1-7): ", 0
+    prompt2 db "Player 2, enter column (1-7): ", 0
+    newline db 10, 0
 
 section .bss
-    col resb 1
-    board_state resb 7 * 6  ; 7 columns, 6 rows
+    input resb 1
+    current_player resb 1
 
 section .text
     global _start
 
 _start:
-    call print_board
-    call game_loop
+    ; Initialize current_player to 1 (Player 1 starts)
+    mov byte [current_player], 1
 
-game_loop:
-    ; Player 1 turn
-    mov rdi, 'x'
-    call player_turn
-
-    ; Player 2 turn
-    mov rdi, 'o'
-    call player_turn
-
-    jmp game_loop
-
-player_turn:
-    ; Print prompt
-    mov rax, 1
-    mov rdi, 1
-    mov rsi, prompt
-    mov rdx, prompt_len
+    ; Main loop
+main_loop:
+    ; Display the board
+    mov rax, 1          ; sys_write
+    mov rdi, 1          ; file descriptor (stdout)
+    mov rsi, board      ; pointer to the board data
+    mov rdx, 56         ; number of bytes to write
     syscall
 
-    ; Read input
-    mov rax, 0
-    mov rdi, 0
-    mov rsi, col
-    mov rdx, 1
+    ; Display the prompt based on current player
+    mov al, [current_player]
+    cmp al, 1
+    je player1_prompt
+    cmp al, 2
+    je player2_prompt
+
+player1_prompt:
+    mov rax, 1          ; sys_write
+    mov rdi, 1          ; file descriptor (stdout)
+    mov rsi, prompt1    ; pointer to Player 1's prompt
+    mov rdx, 29         ; number of bytes to write
+    syscall
+    jmp read_input
+
+player2_prompt:
+    mov rax, 1          ; sys_write
+    mov rdi, 1          ; file descriptor (stdout)
+    mov rsi, prompt2    ; pointer to Player 2's prompt
+    mov rdx, 29         ; number of bytes to write
+    syscall
+
+read_input:
+    ; Read input from stdin
+    mov rax, 0          ; sys_read
+    mov rdi, 0          ; file descriptor (stdin)
+    mov rsi, input      ; pointer to the input buffer
+    mov rdx, 1          ; number of bytes to read
     syscall
 
     ; Convert input to column index (0-6)
-    sub byte [col], '1'
-    
-    ; Check bounds
-    cmp byte [col], 6
+    movzx rbx, byte [input]
+    sub rbx, '1'
+    cmp rbx, 6
     ja invalid_input
 
-    ; Drop piece
-    movzx rsi, byte [col]
-    call drop_piece
+    ; Place the piece in the correct column
+    call place_piece
 
-    ret
+    ; Alternate the player turn
+    mov al, [current_player]
+    cmp al, 1
+    je switch_to_player2
+    cmp al, 2
+    je switch_to_player1
+
+switch_to_player1:
+    mov byte [current_player], 1
+    jmp main_loop
+
+switch_to_player2:
+    mov byte [current_player], 2
+    jmp main_loop
 
 invalid_input:
-    ; Invalid input handling
-    ret
+    ; Handle invalid input (do nothing)
+    jmp main_loop
 
-drop_piece:
-    ; rdi contains the player piece ('x' or 'o')
-    ; rsi contains the column index
-    mov rcx, 5  ; Start from the bottom row
-.drop_loop:
-    mov rbx, 7
-    mul rbx
-    add rbx, rsi
-    add rbx, rcx
-    mov al, byte [board_state + rbx]
-    cmp al, 0
-    je .place_piece
-    dec rcx
-    jns .drop_loop
-    ret
+place_piece:
+    ; Place piece in the lowest available row in the specified column
+    mov rcx, 5          ; start from the bottom row (5th index)
+place_loop:
+    mov rdx, rcx
+    imul rdx, 8         ; multiply by 8 (7 chars + newline)
+    add rdx, rbx        ; add the column index
+    add rdx, board      ; add the base address of the board
 
-.place_piece:
-    ; Place the piece
-    mov byte [board_state + rbx], dil
-
-    call update_board
+    cmp byte [rdx], '.' ; check if the cell is empty
+    je place_found      ; if empty, place the piece
+    
+    loop place_loop     ; decrement rcx and repeat
 
     ret
 
-update_board:
-    ; Update the visual board based on board_state
-    mov rdi, board
-    mov rbx, 6 * 7
+place_found:
+    ; Place 'X' or 'O' based on current player
+    mov al, [current_player]
+    cmp al, 1
+    je place_X
+    cmp al, 2
+    je place_O
 
-.update_loop:
-    cmp rbx, 0
-    je .print_board
-
-    dec rbx
-    mov al, byte [board_state + rbx]
-    cmp al, 0
-    je .next
-
-    ; Calculate the position in the visual board
-    mov rcx, rbx
-    mov rdx, 4
-    mul rdx
-    add rdi, 37
-    add rdi, rcx
-
-    ; Update the visual board
-    mov [rdi], al
-
-.next:
-    jmp .update_loop
-
-.print_board:
-    call print_board
+place_X:
+    mov byte [rdx], 'X'
     ret
 
-print_board:
-    ; Print the board
-    mov rax, 1
-    mov rdi, 1
-    mov rsi, board
-    mov rdx, len
-    syscall
+place_O:
+    mov byte [rdx], 'O'
     ret
-
-section .data
-prompt db 'Enter column (1-7): ', 0
-prompt_len equ $ - prompt

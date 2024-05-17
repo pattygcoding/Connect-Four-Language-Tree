@@ -5,7 +5,7 @@ $ gnatmake main.adb
 $ ./main
 
 x64 Assembly (assembly64):
-$ nasm -f elf64 main.s -o main.o
+$ nasm -f elf64 main.asm -o main.o
 $ ld -s main.o -o main
 $ ./main
 $ rm main main.o
