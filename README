@@ -4,6 +4,12 @@ Ada (ada):
 $ gnatmake main.adb
 $ ./main
 
+x64 Assembly (assembly64):
+$ nasm -f elf64 main.s -o main.o
+$ ld -s main.o -o main
+$ ./main
+$ rm main main.o
+
 C (c):
 $ gcc -o connect4 main.c
 $ ./connect4
@@ -136,12 +142,6 @@ $ node main.js
 
 VB.NET
 Only works on Windows Forms, but included here for concept
-
-x64 Assembly (assembly64):
-$ nasm -f elf64 main.asm -o main.o
-$ ld -s main.o -o main
-$ ./main
-$ rm main main.o
 
 Bash (bash):
 Work in progress

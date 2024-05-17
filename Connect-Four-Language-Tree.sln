@@ -1,0 +1,30 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.002.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "c#", "c#", "{629C71FB-1F93-45CF-9519-49E489938670}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConnectFour", "c#\ConnectFour\ConnectFour.csproj", "{1B58079A-CDFE-41FA-973F-A5E568E6C52C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1B58079A-CDFE-41FA-973F-A5E568E6C52C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1B58079A-CDFE-41FA-973F-A5E568E6C52C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1B58079A-CDFE-41FA-973F-A5E568E6C52C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1B58079A-CDFE-41FA-973F-A5E568E6C52C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{1B58079A-CDFE-41FA-973F-A5E568E6C52C} = {629C71FB-1F93-45CF-9519-49E489938670}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {247EB949-5661-4DE3-B66F-FC1708DD0A4C}
+	EndGlobalSection
+EndGlobal
