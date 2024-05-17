@@ -30,6 +30,9 @@ C++ with Windows (c++/windows):
 $ g++ -o main.exe main.cpp -mwindows
 $ ./main.exe
 
+Dart (dart):
+$ dart run main.dart
+
 Elixir (elixir):
 $ elixir main.exs
 
@@ -82,6 +85,9 @@ Then visit the link http://localhost:8080
 Kotlin (kotlin):
 $ kotlinc main.kt -include-runtime -d main.jar
 $ java -jar main.jar
+
+Lua (lua):
+$ lua main.lua
 
 Objective-C (objective-c):
 $ clang -framework Foundation main.m -o ConnectFour
