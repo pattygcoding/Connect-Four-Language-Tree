@@ -2,7 +2,8 @@
 #include <vector>
 #include <string>
 
-using namespace std;
+// using namespace std works here too, but this is better coding
+using std::cin, std::cout, std::vector;
 
 class Connect4 {
 private:
@@ -16,22 +17,22 @@ public:
 
     // Display the current state of the board
     void displayBoard() const {
-        cout << endl;
+        cout << "\n";
         for (int i = 0; i < ROWS; i++) {
             cout << "| ";
             for (int j = 0; j < COLS; j++) {
                 cout << board[i][j] << " | ";
             }
-            cout << endl;
+            cout << "\n";
         }
-        cout << "-----------------------------" << endl;
-        cout << "| 1 | 2 | 3 | 4 | 5 | 6 | 7 |" << endl;
+        cout << "-----------------------------\n";
+        cout << "| 1 | 2 | 3 | 4 | 5 | 6 | 7 |\n";
     }
 
     // Drop a piece into the specified column
     bool dropPiece(int col) {
         if (col < 0 || col >= COLS) {
-            cout << "Invalid column. Please try again." << endl;
+            cout << "Invalid column. Please try again.\n";
             return false;
         }
 
@@ -42,7 +43,7 @@ public:
             }
         }
 
-        cout << "Column is full. Please choose another column." << endl;
+        cout << "Column is full. Please choose another column.\n";
         return false;
     }
 
@@ -126,13 +127,13 @@ public:
             if (dropPiece(col)) {
                 if (checkWin()) {
                     displayBoard();
-                    cout << "Player " << currentPlayer << " wins!" << endl;
+                    cout << "Player " << currentPlayer << " wins!\n";
                     break;
                 }
 
                 if (boardFull()) {
                     displayBoard();
-                    cout << "It's a draw!" << endl;
+                    cout << "It's a draw!\n";
                     break;
                 }
 
