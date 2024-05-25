@@ -132,7 +132,7 @@ public:
                 }
 
                 if (boardFull()) {
-                    displayBoard();
+                    displayBoard();                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 
                     cout << "It's a draw!\n";
                     break;
                 }
