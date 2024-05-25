@@ -22,10 +22,13 @@ C# with .NET (c#/ConnectFour):
 $ dotnet build
 $ dotnet run
 
-C# with .NET and LINQ (c#/ConnectFourLinq):
+C# with .NET and Entity Framework (c#/ConnectFourEF):
 $ dotnet build
 $ dotnet run
 
+C# with .NET and LINQ (c#/ConnectFourLinq):
+$ dotnet build
+$ dotnet run
 
 C++ (c++):
 $ g++ -o connect4 main.cpp

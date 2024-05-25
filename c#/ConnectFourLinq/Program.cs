@@ -1,16 +1,15 @@
 ﻿using System;
-using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
+using System.Linq;
 
 class ConnectFour
 {
     const int Rows = 6;
     const int Columns = 7;
     char[,] board = new char[Rows, Columns];
-    GameContext db;
 
     public ConnectFour()
     {
-        db = new GameContext();
         InitializeBoard();
     }
 
@@ -18,8 +17,6 @@ class ConnectFour
     {
         char currentPlayer = 'X';
         bool gameWon = false;
-
-        LoadGameState();
 
         while (!gameWon)
         {
@@ -38,12 +35,10 @@ class ConnectFour
             {
                 PrintBoard();
                 Console.WriteLine($"Player {currentPlayer} wins!");
-                SaveGameState(currentPlayer);
             }
             else
             {
                 currentPlayer = currentPlayer == 'X' ? 'O' : 'X';
-                SaveGameState(currentPlayer);
             }
         }
     }
@@ -82,26 +77,20 @@ class ConnectFour
 
     bool CheckDirection(char player, int row, int column, int deltaRow, int deltaColumn)
     {
-        int count = 1;
-        count += CountInDirection(player, row, column, deltaRow, deltaColumn);
-        count += CountInDirection(player, row, column, -deltaRow, -deltaColumn);
-        return count >= 4;
+        return CountInDirection(player, row, column, deltaRow, deltaColumn) +
+               CountInDirection(player, row, column, -deltaRow, -deltaColumn) - 1 >= 4;
     }
 
+    // LINQ here
     int CountInDirection(char player, int row, int column, int deltaRow, int deltaColumn)
     {
-        int count = 0;
-        int currentRow = row + deltaRow;
-        int currentColumn = column + deltaColumn;
+        var positions = Enumerable.Range(0, 4)
+                                  .Select(i => new { Row = row + i * deltaRow, Col = column + i * deltaColumn })
+                                  .Where(pos => pos.Row >= 0 && pos.Row < Rows && pos.Col >= 0 && pos.Col < Columns)
+                                  .TakeWhile(pos => board[pos.Row, pos.Col] == player)
+                                  .Count();
 
-        while (currentRow >= 0 && currentRow < Rows && currentColumn >= 0 && currentColumn < Columns && board[currentRow, currentColumn] == player)
-        {
-            count++;
-            currentRow += deltaRow;
-            currentColumn += deltaColumn;
-        }
-
-        return count;
+        return positions;
     }
 
     void PrintBoard()
@@ -115,31 +104,6 @@ class ConnectFour
             Console.WriteLine();
         }
         Console.WriteLine(new string('-', Columns * 2));
-    }
-
-    void SaveGameState(char currentPlayer)
-    {
-        var gameState = new GameState
-        {
-            Board = string.Join(",", board.Cast<char>()),
-            CurrentPlayer = currentPlayer
-        };
-
-        db.GameStates.Add(gameState);
-        db.SaveChanges();
-    }
-
-    void LoadGameState()
-    {
-        var gameState = db.GameStates.OrderByDescending(g => g.Id).FirstOrDefault();
-        if (gameState != null)
-        {
-            var boardData = gameState.Board.Split(',');
-            for (int i = 0; i < boardData.Length; i++)
-            {
-                board[i / Columns, i % Columns] = boardData[i][0];
-            }
-        }
     }
 
     static void Main()
