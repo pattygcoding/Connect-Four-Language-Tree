@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "6W8/0C8s2zZVBrgmpCrKz3ToWQM8oO47PwLKsVJ12fc599+AXWcs+0UEuYh3xSSdwUB4QgmLUC63W1NeyWvTPg==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\phgoodw\\Desktop\\Connect-Four-Language-Tree\\f#\\ConnectFour\\ConnectFour.fsproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\phgoodw\\.nuget\\packages\\fsharp.core\\6.0.7\\fsharp.core.6.0.7.nupkg.sha512"
+  ],
+  "logs": []
+}

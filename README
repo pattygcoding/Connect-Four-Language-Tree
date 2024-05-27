@@ -47,6 +47,9 @@ $ dart run main.dart
 Elixir (elixir):
 $ elixir main.exs
 
+F# with .NET (f#/ConnectFourWPF):
+$ dotnet run
+
 Fortran (fortran):
 $ gfortran -o ConnectFour main.f90
 $ ./ConnectFour
