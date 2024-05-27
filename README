@@ -157,8 +157,11 @@ TypeScript with Node.js (typescript/node):
 $ tsc main.ts
 $ node main.js
 
-VB.NET
-Only works on Windows Forms, but included here for concept
+VB.NET (vbnet/ConnectFour)
+$ dotnet run
+
+VB.NET with Windows Forms (vbnet/ConnectFourWPF)
+$ dotnet run
 
 Bash (bash):
 Work in progress
