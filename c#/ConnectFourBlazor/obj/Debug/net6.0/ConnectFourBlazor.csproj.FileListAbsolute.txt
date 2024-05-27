@@ -1,0 +1,8 @@
+C:\Users\phgoodw\Desktop\Connect-Four-Language-Tree\c#\ConnectFourBlazor\obj\Debug\net6.0\ConnectFourBlazor.csproj.AssemblyReference.cache
+C:\Users\phgoodw\Desktop\Connect-Four-Language-Tree\c#\ConnectFourBlazor\obj\Debug\net6.0\ConnectFourBlazor.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\phgoodw\Desktop\Connect-Four-Language-Tree\c#\ConnectFourBlazor\obj\Debug\net6.0\ConnectFourBlazor.AssemblyInfoInputs.cache
+C:\Users\phgoodw\Desktop\Connect-Four-Language-Tree\c#\ConnectFourBlazor\obj\Debug\net6.0\ConnectFourBlazor.AssemblyInfo.cs
+C:\Users\phgoodw\Desktop\Connect-Four-Language-Tree\c#\ConnectFourBlazor\obj\Debug\net6.0\ConnectFourBlazor.csproj.CoreCompileInputs.cache
+C:\Users\phgoodw\Desktop\Connect-Four-Language-Tree\c#\ConnectFourBlazor\obj\Debug\net6.0\ConnectFourBlazor.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\phgoodw\Desktop\Connect-Four-Language-Tree\c#\ConnectFourBlazor\obj\Debug\net6.0\ConnectFourBlazor.RazorAssemblyInfo.cache
+C:\Users\phgoodw\Desktop\Connect-Four-Language-Tree\c#\ConnectFourBlazor\obj\Debug\net6.0\ConnectFourBlazor.RazorAssemblyInfo.cs

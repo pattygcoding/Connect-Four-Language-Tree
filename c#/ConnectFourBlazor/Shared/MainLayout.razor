@@ -1,0 +1,35 @@
+﻿@inherits LayoutComponentBase
+
+<PageTitle>Connect Four Blazor</PageTitle>
+
+<div class="sidebar">
+    <NavMenu />
+</div>
+
+<div class="main">
+    <div class="content px-4">
+        @Body
+    </div>
+</div>
+
+<style>
+    .sidebar {
+        position: fixed;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        width: 250px;
+        padding: 1rem;
+        background: #f8f9fa;
+    }
+
+    .main {
+        margin-left: 250px;
+        padding: 1rem;
+    }
+
+    .content {
+        max-width: 800px;
+        margin: auto;
+    }
+</style>

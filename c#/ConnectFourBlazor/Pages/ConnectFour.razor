@@ -1,0 +1,43 @@
+@page "/connectfour"
+@using ConnectFourBlazor.Models
+
+<h3>Connect Four</h3>
+
+<div>
+    <p>@game.Message</p>
+    <table>
+        @for (int row = 0; row < 6; row++)
+        {
+            <tr>
+                @for (int col = 0; col < 7; col++)
+                {
+                    <td class="cell">
+                        <button @onclick="() => DropDisc(col)" disabled="@game.Board[row, col] != 0 || game.GameOver">
+                            @GetCellContent(game.Board[row, col])
+                        </button>
+                    </td>
+                }
+            </tr>
+        }
+    </table>
+    <button @onclick="ResetGame">Reset Game</button>
+</div>
+
+@code {
+    private ConnectFour game = new ConnectFour();
+
+    private void DropDisc(int column)
+    {
+        game.DropDisc(column);
+    }
+
+    private void ResetGame()
+    {
+        game = new ConnectFour();
+    }
+
+    private string GetCellContent(int cellValue)
+    {
+        return cellValue == 1 ? "X" : cellValue == 2 ? "O" : "";
+    }
+}
