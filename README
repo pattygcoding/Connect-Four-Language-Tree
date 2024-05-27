@@ -30,6 +30,9 @@ C# with .NET and LINQ (c#/ConnectFourLinq):
 $ dotnet build
 $ dotnet run
 
+C# with .NET and Windows Forms (c#/ConnectFourWPF):
+$ dotnet run
+
 C++ (c++):
 $ g++ -o connect4 main.cpp
 $ ./connect4

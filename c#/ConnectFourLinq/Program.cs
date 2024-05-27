@@ -21,15 +21,15 @@ class ConnectFour
         while (!gameWon)
         {
             PrintBoard();
-            Console.WriteLine($"Player {currentPlayer}'s turn. Choose a column (0-{Columns - 1}): ");
+            Console.WriteLine($"Player {currentPlayer}'s turn. Choose a column (1-{Columns}): ");
             int column;
-            while (!int.TryParse(Console.ReadLine(), out column) || column < 0 || column >= Columns || board[0, column] != '.')
+            while (!int.TryParse(Console.ReadLine(), out column) || column < 1 || column > Columns || board[0, column - 1] != '.')
             {
-                Console.WriteLine($"Invalid column. Choose a column (0-{Columns - 1}): ");
+                Console.WriteLine($"Invalid column. Choose a column (1-{Columns}): ");
             }
 
-            int row = DropDisc(currentPlayer, column);
-            gameWon = CheckForWin(currentPlayer, row, column);
+            int row = DropDisc(currentPlayer, column - 1);
+            gameWon = CheckForWin(currentPlayer, row, column - 1);
 
             if (gameWon)
             {
@@ -81,7 +81,6 @@ class ConnectFour
                CountInDirection(player, row, column, -deltaRow, -deltaColumn) - 1 >= 4;
     }
 
-    // LINQ here
     int CountInDirection(char player, int row, int column, int deltaRow, int deltaColumn)
     {
         var positions = Enumerable.Range(0, 4)
