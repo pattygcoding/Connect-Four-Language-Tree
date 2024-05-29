@@ -1,0 +1,20 @@
+{
+  "version": 2,
+  "dgSpecHash": "+iDK6afAWxUGUorZWoETzfEESWD9G5FGZ+BusMZIitk5i+R8ievKgz3bikGQCvBhVw2TAnn1f1kfvVRaLbVT2Q==",
+  "success": false,
+  "projectFilePath": "C:\\Users\\phgoodw\\Desktop\\Connect-Four-Language-Tree\\python\\IronPython\\IronPython.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\phgoodw\\.nuget\\packages\\ironpython.stdlib\\3.4.1\\ironpython.stdlib.3.4.1.nupkg.sha512"
+  ],
+  "logs": [
+    {
+      "code": "NU1108",
+      "level": "Error",
+      "message": "Cycle detected. \r\n  IronPython -> IronPython.StdLib 3.4.1 -> IronPython (>= 3.4.0 && < 3.5.0).",
+      "libraryId": "IronPython",
+      "targetGraphs": [
+        "net6.0"
+      ]
+    }
+  ]
+}
