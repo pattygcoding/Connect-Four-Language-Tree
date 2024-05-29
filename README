@@ -109,10 +109,6 @@ $ java -jar main.jar
 Lua (lua):
 $ lua main.lua
 
-Objective-C (objective-c):
-$ clang -framework Foundation main.m -o ConnectFour
-$ ./ConnectFour
-
 OCaml (ocaml)
 $ ocamlc -o main main.ml
 $ ./main
