@@ -1,94 +1,79 @@
-import Data.List (intersperse)
+import Data.List (transpose)
 
--- Constants
+type Board = [[Char]]
+type Column = Int
 type Player = Char
-empty :: Player
+
+rows, columns :: Int
+rows = 6
+columns = 7
+
+player1, player2, empty :: Player
+player1 = 'X'
+player2 = 'O'
 empty = ' '
 
-player1 :: Player
-player1 = 'X'
-
-player2 :: Player
-player2 = 'O'
-
-rows :: Int
-rows = 6
-
-cols :: Int
-cols = 7
-
--- Game state
-type Board = [[Player]]
-
-initialBoard :: Board
-initialBoard = replicate rows (replicate cols empty)
-
--- Display the game board
-displayBoard :: Board -> IO ()
-displayBoard board = do
-    putStrLn " 1 2 3 4 5 6 7"
-    mapM_ (putStrLn . ('|' :) . intersperse '|' . map (\p -> if p == empty then ' ' else p)) board
-    putStrLn "---------------"
-
--- Drop a piece into a column
-dropPiece :: Board -> Int -> Player -> Maybe Board
-dropPiece board col player
-    | col < 0 || col >= cols = Nothing
-    | otherwise = case dropPiece' (reverse board !! col) player of
-        Just newCol -> Just $ take col board ++ [newCol] ++ drop (col + 1) board
-        Nothing -> Nothing
-
--- Helper function to drop a piece into a column
-dropPiece' :: [Player] -> Player -> Maybe [Player]
-dropPiece' [] _ = Nothing
-dropPiece' (emptyPiece : rest) player = Just $ if emptyPiece == empty then player : rest else Nothing : rest
-dropPiece' (piece : rest) player = (piece :) <$> dropPiece' rest player
-
--- Check for a win condition
-checkWin :: Board -> Player -> Bool
-checkWin board player =
-    any (checkLine player) (rows board) ||
-    any (checkLine player) (cols board) ||
-    any (checkLine player) (diagonals board)
-
--- Check a line for a win
-checkLine :: Player -> [Player] -> Bool
-checkLine player line = go line 0
-  where
-    go [] count = count >= 4
-    go (p : ps) count
-        | p == player = go ps (count + 1)
-        | otherwise = go ps 0
-
--- Get all diagonals in the board
-diagonals :: Board -> [[Player]]
-diagonals board = leftDiagonals ++ rightDiagonals
-  where
-    leftDiagonals = [ [ board !! (r + i) !! (c + i) | i <- [0 .. min (rows - r - 1) (cols - c - 1)] ] | r <- [0 .. rows - 1], c <- [0 .. cols - 1] ]
-    rightDiagonals = [ [ board !! (r + i) !! (c - i) | i <- [0 .. min (rows - r - 1) (c - 0)] ] | r <- [0 .. rows - 1], c <- [cols - 1, cols - 2 .. 0] ]
-
--- Main game loop
-playConnectFour :: Board -> Player -> IO ()
-playConnectFour board player = do
-    displayBoard board
-    putStrLn $ "Player " ++ [player] ++ "'s turn. Enter column (1-7): "
-    colStr <- getLine
-    let col = read colStr :: Int
-    case dropPiece board (col - 1) player of
-        Just newBoard ->
-            if checkWin newBoard player
-                then do
-                    displayBoard newBoard
-                    putStrLn $ "Player " ++ [player] ++ " wins!"
-                else if all (notElem empty) newBoard
-                    then do
-                        displayBoard newBoard
-                        putStrLn "It's a draw! The board is full."
-                    else playConnectFour newBoard (if player == player1 then player2 else player1)
-        Nothing -> do
-            putStrLn "Invalid column. Please try again."
-            playConnectFour board player
-
--- Entry point
 main :: IO ()
-main = playConnectFour initialBoard player1
+main = playGame (replicate rows (replicate columns empty)) player1
+
+playGame :: Board -> Player -> IO ()
+playGame board player = do
+    putStrLn $ displayBoard board
+    putStrLn $ "Player " ++ [player] ++ "'s turn. Enter column (1-7):"
+    col <- getLine
+    let column = read col - 1
+    if column < 0 || column >= columns || not (isValidMove board column) then do
+        putStrLn "Invalid move. Try again."
+        playGame board player
+    else do
+        let newBoard = dropToken board column player
+        if checkWin newBoard player then do
+            putStrLn $ displayBoard newBoard
+            putStrLn $ "Player " ++ [player] ++ " wins!"
+        else if isFull newBoard then do
+            putStrLn $ displayBoard newBoard
+            putStrLn "It's a draw!"
+        else
+            playGame newBoard (nextPlayer player)
+
+displayBoard :: Board -> String
+displayBoard board = unlines (map unwords (map (map (:[])) board)) ++ "1 2 3 4 5 6 7"
+
+isValidMove :: Board -> Column -> Bool
+isValidMove board col = any (== empty) (map (!! col) board)
+
+dropToken :: Board -> Column -> Player -> Board
+dropToken board col player = take row board ++ [newRow] ++ drop (row + 1) board
+    where row = last (findEmptyRows board col)
+          newRow = take col (board !! row) ++ [player] ++ drop (col + 1) (board !! row)
+
+findEmptyRows :: Board -> Column -> [Int]
+findEmptyRows board col = [i | (i, row) <- zip [0..] board, row !! col == empty]
+
+checkWin :: Board -> Player -> Bool
+checkWin board player = any id [checkRows, checkColumns, checkDiagonals]
+    where
+        checkRows = any (checkLine player) board
+        checkColumns = any (checkLine player) (transpose board)
+        checkDiagonals = any (checkLine player) (diagonals board)
+
+checkLine :: Player -> [Player] -> Bool
+checkLine player line = any (all (== player)) (windows 4 line)
+
+windows :: Int -> [a] -> [[a]]
+windows n xs
+    | length xs < n = []
+    | otherwise = take n xs : windows n (tail xs)
+
+diagonals :: Board -> [[Player]]
+diagonals board = diagonals' board ++ diagonals' (map reverse board)
+    where
+        diagonals' b = [[b !! (r + i) !! (c + i) | i <- [0..min (rows - r - 1) (columns - c - 1)]] | r <- [0..rows-1], c <- [0..columns-1], r + 3 < rows, c + 3 < columns]
+
+isFull :: Board -> Bool
+isFull board = all (all (/= empty)) board
+
+nextPlayer :: Player -> Player
+nextPlayer player
+    | player == player1 = player2
+    | otherwise = player1
