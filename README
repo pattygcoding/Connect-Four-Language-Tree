@@ -128,6 +128,9 @@ PHP from Web Browser (php):
 $ php -S localhost:8000
 Then visit http://localhost:8000/main.php
 
+PowerShell (powershell):
+./ConnectFour/ps1
+
 Prolog (prolog):
 $ swipl -q -s main.pl
 
