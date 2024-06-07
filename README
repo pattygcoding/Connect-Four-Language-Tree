@@ -165,10 +165,10 @@ TypeScript with Node.js (typescript/node):
 $ tsc main.ts
 $ node main.js
 
-VB.NET (vbnet/ConnectFour)
+VB.NET Core (vbnet/ConnectFour)
 $ dotnet run
 
-VB.NET with Windows Forms (vbnet/ConnectFourWPF)
+VB.NET Core with Windows Forms (vbnet/ConnectFourWPF)
 $ dotnet run
 
 Bash (bash):
