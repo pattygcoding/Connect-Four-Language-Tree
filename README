@@ -24,19 +24,19 @@ C with Windows (c/windows):
 $ gcc -o main.exe main.c -mwindows
 $ ./main.exe
 
-C# with .NET (c#/ConnectFour):
+C# with .NET Core (c#/ConnectFour):
 $ dotnet build
 $ dotnet run
 
-C# with .NET and Entity Framework (c#/ConnectFourEF):
+C# with .NET Core and Entity Framework (c#/ConnectFourEF):
 $ dotnet build
 $ dotnet run
 
-C# with .NET and LINQ (c#/ConnectFourLinq):
+C# with .NET Core and LINQ (c#/ConnectFourLinq):
 $ dotnet build
 $ dotnet run
 
-C# with .NET and Windows Forms (c#/ConnectFourWPF):
+C# with .NET Core and Windows Forms (c#/ConnectFourWPF):
 $ dotnet run
 
 C++ (c++):
@@ -53,7 +53,7 @@ $ dart run main.dart
 Elixir (elixir):
 $ elixir main.exs
 
-F# with .NET (f#/ConnectFourWPF):
+F# with .NET Core (f#/ConnectFourWPF):
 $ dotnet run
 
 Fortran (fortran):
