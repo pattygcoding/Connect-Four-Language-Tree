@@ -1,6 +1,6 @@
-## Instructions for running program:
+# Instructions for running program:
 
-### Ada (ada):
+## Ada (ada):
 ```
 gnatmake main.adb
 ./main
