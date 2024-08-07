@@ -3,74 +3,110 @@
 ## Instructions for running each program:
 
 ### Ada (ada):
-$ gnatmake main.adb
-$ ./main
+```ada
+gnatmake main.adb
+./main
+```
 
 ### x64 Assembly (assembly/x64):
-$ nasm -f elf64 main.asm -o main.o
-$ ld -s main.o -o main
-$ ./main
-$ rm main main.o
+```asm
+nasm -f elf64 main.asm -o main.o
+ld -s main.o -o main
+./main
+rm main main.o
+```
 
 ### x86 Assembly (assembly/x86):
-$ nasm -f elf32 main.asm -o main.o
-$ ld -m elf_i386 main.o -o main
-$ ./main
-$ rm main main.o
+```asm
+nasm -f elf32 main.asm -o main.o
+ld -m elf_i386 main.o -o main
+./main
+rm main main.o
+```
 
 ### C (c):
-$ gcc -o connect4 main.c
-$ ./connect4
+```c
+gcc -o connect4 main.c
+./connect4
+```
 
 ### C with Windows (c/windows):
-$ gcc -o main.exe main.c -mwindows
-$ ./main.exe
+```c
+gcc -o main.exe main.c -mwindows
+./main.exe
+```
 
 ### C# with .NET Core (c#/ConnectFour):
-$ dotnet build
-$ dotnet run
+```csharp
+dotnet build
+dotnet run
+```
 
 ### C# with .NET Core and Entity Framework (c#/ConnectFourEF):
-$ dotnet build
-$ dotnet run
+```csharp
+dotnet build
+dotnet run
+```
 
 ### C# with .NET Core and LINQ (c#/ConnectFourLinq):
-$ dotnet build
-$ dotnet run
+```csharp
+dotnet build
+dotnet run
+```
 
 ### C# with .NET Core and Windows Forms (c#/ConnectFourWPF):
-$ dotnet run
+```csharp
+dotnet run
+```
 
 ### C++ (c++):
-$ g++ -o connect4 main.cpp
-$ ./connect4
+```cpp
+g++ -o connect4 main.cpp
+./connect4
+```
 
 ### C++ with Windows (c++/windows):
-$ g++ -o main.exe main.cpp -mwindows
-$ ./main.exe
+```cpp
+g++ -o main.exe main.cpp -mwindows
+./main.exe
+```
 
 ### Dart (dart):
-$ dart run main.dart
+```dart
+dart run main.dart
+```
 
 ### Elixir (elixir):
-$ elixir main.exs
+```elixir
+elixir main.exs
+```
 
 ### F# with .NET Core (f#/ConnectFourWPF):
-$ dotnet run
+```fsharp
+dotnet run
+```
 
 ### Fortran (fortran):
-$ gfortran -o ConnectFour main.f90
-$ ./ConnectFour
+```fortran
+gfortran -o ConnectFour main.f90
+./ConnectFour
+```
 
 ### Golang (golang):
-$ go run main.go
+```go
+go run main.go
+```
 
 ### Groovy (groovy):
-$ groovy Main.groovy
+```groovy
+groovy Main.groovy
+```
 
 ### Haskell (haskell):
-$ ghc -o ConnectFour main.hs
-$ ./ConnectFour
+```haskell
+ghc -o ConnectFour main.hs
+./ConnectFour
+```
 
 ### Java (java):
 $ javac Main.java
