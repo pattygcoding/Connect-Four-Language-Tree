@@ -1,175 +1,177 @@
-Instructions for running each program:
+# Connect Four Language Tree
 
-Ada (ada):
+## Instructions for running each program:
+
+### Ada (ada):
 $ gnatmake main.adb
 $ ./main
 
-x64 Assembly (assembly/x64):
+### x64 Assembly (assembly/x64):
 $ nasm -f elf64 main.asm -o main.o
 $ ld -s main.o -o main
 $ ./main
 $ rm main main.o
 
-x86 Assembly (assembly/x86):
+### x86 Assembly (assembly/x86):
 $ nasm -f elf32 main.asm -o main.o
 $ ld -m elf_i386 main.o -o main
 $ ./main
 $ rm main main.o
 
-C (c):
+### C (c):
 $ gcc -o connect4 main.c
 $ ./connect4
 
-C with Windows (c/windows):
+### C with Windows (c/windows):
 $ gcc -o main.exe main.c -mwindows
 $ ./main.exe
 
-C# with .NET Core (c#/ConnectFour):
+### C# with .NET Core (c#/ConnectFour):
 $ dotnet build
 $ dotnet run
 
-C# with .NET Core and Entity Framework (c#/ConnectFourEF):
+### C# with .NET Core and Entity Framework (c#/ConnectFourEF):
 $ dotnet build
 $ dotnet run
 
-C# with .NET Core and LINQ (c#/ConnectFourLinq):
+### C# with .NET Core and LINQ (c#/ConnectFourLinq):
 $ dotnet build
 $ dotnet run
 
-C# with .NET Core and Windows Forms (c#/ConnectFourWPF):
+### C# with .NET Core and Windows Forms (c#/ConnectFourWPF):
 $ dotnet run
 
-C++ (c++):
+### C++ (c++):
 $ g++ -o connect4 main.cpp
 $ ./connect4
 
-C++ with Windows (c++/windows):
+### C++ with Windows (c++/windows):
 $ g++ -o main.exe main.cpp -mwindows
 $ ./main.exe
 
-Dart (dart):
+### Dart (dart):
 $ dart run main.dart
 
-Elixir (elixir):
+### Elixir (elixir):
 $ elixir main.exs
 
-F# with .NET Core (f#/ConnectFourWPF):
+### F# with .NET Core (f#/ConnectFourWPF):
 $ dotnet run
 
-Fortran (fortran):
+### Fortran (fortran):
 $ gfortran -o ConnectFour main.f90
 $ ./ConnectFour
 
-Golang (golang):
+### Golang (golang):
 $ go run main.go
 
-Groovy (groovy):
+### Groovy (groovy):
 $ groovy Main.groovy
 
-Haskell (haskell):
+### Haskell (haskell):
 $ ghc -o ConnectFour main.hs
 $ ./ConnectFour
 
-Java (java):
+### Java (java):
 $ javac Main.java
 $ java Main
 
-Java with SpringBoot (java/springboot):
+### Java with SpringBoot (java/springboot):
 Code documentation only, see the directory README for more information
 
-JavaScript with HTML5 & CSS3 (javascript/html-css):
+### JavaScript with HTML5 & CSS3 (javascript/html-css):
 $ python -m http.server
 Then visit the link http://localhost:8000/index.html
 
-JavaScript with MySQL (javascript/mysql):
+### JavaScript with MySQL (javascript/mysql):
 $ node main.js
 
-JavaScript with MongoDB & NoSQL (javascript/mongodb-nosql):
+### JavaScript with MongoDB & NoSQL (javascript/mongodb-nosql):
 $ node main.js
 
-JavaScript with Next.js (javascript/next):
+### JavaScript with Next.js (javascript/next):
 $ npm run dev
 Then visit the link http://localhost:3000/main
 
-JavaScript with Node.js (javascript/node):
+### JavaScript with Node.js (javascript/node):
 $ node main.js
 
-JavaScript with Vue.js (javascript/vue):
+### JavaScript with Vue.js (javascript/vue):
 $ npm run serve
 Then visit the link http://localhost:8080
 
-JavaScript with Vue.js using AI (javascript/vueai):
+### JavaScript with Vue.js using AI (javascript/vueai):
 $ npm run serve
 Then visit the link http://localhost:8080
 
-Kotlin (kotlin):
+### Kotlin (kotlin):
 $ kotlinc main.kt -include-runtime -d main.jar
 $ java -jar main.jar
 
-Lua (lua):
+### Lua (lua):
 $ lua main.lua
 
-OCaml (ocaml)
+### OCaml (ocaml)
 $ ocamlc -o main main.ml
 $ ./main
 
-Pascal (pascal):
+### Pascal (pascal):
 $ fpc main.pas
 $ ./main
 
-Perl (perl):
+### Perl (perl):
 $ perl main.pl
 
-PHP (php):
+### PHP (php):
 $ php main.php
 
-PHP from Web Browser (php):
+### PHP from Web Browser (php):
 // WORK IN PROGRESS
 $ php -S localhost:8000
 Then visit http://localhost:8000/main.php
 
-PowerShell (powershell):
+### PowerShell (powershell):
 ./ConnectFour/ps1
 
-Prolog (prolog):
+### Prolog (prolog):
 $ swipl -q -s main.pl
 
-Python (python):
+### Python (python):
 $ python main.py
 
-Python with JSON (python):
+### Python with JSON (python):
 $ python main.py
 
-Python with tkinter (python/tkinter):
+### Python with tkinter (python/tkinter):
 $ python main.py
 
-Ruby (ruby):
+### Ruby (ruby):
 $ ruby main.rb
 
-Rust (rust):
+### Rust (rust):
 $ cargo build
 $ ./target/debug/connect-four
 $ rm target/debug/connect-four
 
-Scala (scala):
+### Scala (scala):
 $ scala main.scala
 
-Swift (swift):
+### Swift (swift):
 $ swiftc main.swift -o main
 $ ./main
 
-TypeScript with Angular (typescript/angular):
+### TypeScript with Angular (typescript/angular):
 $ ng serve --open
 
-TypeScript with Node.js (typescript/node):
+### TypeScript with Node.js (typescript/node):
 $ tsc main.ts
 $ node main.js
 
-VB.NET Core (vbnet/ConnectFour)
+### VB.NET Core (vbnet/ConnectFour)
 $ dotnet run
 
-VB.NET Core with Windows Forms (vbnet/ConnectFourWPF)
+### VB.NET Core with Windows Forms (vbnet/ConnectFourWPF)
 $ dotnet run
 
-Bash (bash):
+### Bash (bash):
 Work in progress
