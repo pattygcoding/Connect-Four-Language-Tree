@@ -1,6 +1,9 @@
-# Instructions for running program:
-
 ## JavaScript with Next.js (javascript/next):
+**Prerequisite Installations:** 
+- Node.js
+- Next.js
+
+**Command:**
 ```
 npm run dev
 ```
