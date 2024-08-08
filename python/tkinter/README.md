@@ -1,6 +1,8 @@
-# Instructions for running program:
+## Python with Tkinter (python/tkinter):
+**Prerequisite Installations:** 
+- Python (Make sure Tkinter is included with your installation)
 
-## Python with tkinter (python/tkinter):
+**Command:**
 ```
 python main.py
 ```
