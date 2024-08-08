@@ -7,12 +7,12 @@
   - [x86](#x86-assembly-assemblyx86)
 - [C](#c-c)
   - [Windows Library](#c-with-windows-cwindows)
-- C#
+- [C#](#c)
   - [.NET Core](#c-with-net-core-cconnectfour)
   - [.NET Core and Entity Framework](#c-with-net-core-and-entity-framework-cconnectfouref)
   - [.NET Core and LINQ](#c-with-net-core-and-linq-cconnectfourlinq)
   - [.NET Core and Windows Forms](#c-with-net-core-and-windows-forms-cconnectfourwpf)
-- [C++](#c-c)
+- [C++](#c++)
   - [Windows Library](#c-with-windows-cwindows)
 - [Dart](#dart-dart)
 - [Elixir](#elixir-elixir)
@@ -42,6 +42,7 @@
 - [PowerShell](#powershell-powershell)
 - [Prolog](#prolog-prolog)
 - [Python](#python-python)
+  - [AI](#python-with-ai-python)
   - [JSON](#python-with-json-python)
   - [Tkinter](#python-with-tkinter-pythontkinter)
 - [Ruby](#ruby-ruby)
@@ -111,6 +112,15 @@ gcc -o connect4 main.c
 ```
 gcc -o main.exe main.c -mwindows
 ./main.exe
+```
+
+## C# (c#):
+**Prerequisite Installations:** 
+- CSC (Part of GCC)
+
+**Command:**
+```
+csc main.cs
 ```
 
 ## C# with .NET Core (c#/ConnectFour):
@@ -420,6 +430,14 @@ swipl -q -s main.pl
 ```
 python main.py
 ```
+
+## Python with AI (python/ai):
+**Prerequisite Installations:** 
+- Python
+
+**Command:**
+```
+python main.py
 
 ## Python with JSON (python):
 **Prerequisite Installations:** 
