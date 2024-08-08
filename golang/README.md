@@ -1,6 +1,8 @@
-# Instructions for running program:
-
 ## Golang (golang):
+**Prerequisite Installations:** 
+- Go
+
+**Command:**
 ```
 go run main.go
 ```
