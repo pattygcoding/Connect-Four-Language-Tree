@@ -1,6 +1,8 @@
-# Instructions for running program:
-
 ## Scala (scala):
+**Prerequisite Installations:** 
+- Scala
+
+**Command:**
 ```
 scala main.scala
 ```
