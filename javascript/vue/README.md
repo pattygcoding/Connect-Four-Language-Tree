@@ -1,6 +1,9 @@
-# Instructions for running program:
-
 ## JavaScript with Vue.js (javascript/vue):
+**Prerequisite Installations:** 
+- Node.js
+- Vue CLI
+
+**Command:**
 ```
 npm run serve
 ```
