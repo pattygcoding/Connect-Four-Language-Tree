@@ -1,6 +1,8 @@
-# Instructions for running program:
-
 ## Ruby (ruby):
+**Prerequisite Installations:** 
+- Ruby
+
+**Command:**
 ```
 ruby main.rb
 ```
