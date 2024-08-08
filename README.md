@@ -12,7 +12,7 @@
   - [.NET Core and Entity Framework](#c-with-net-core-and-entity-framework-cconnectfouref)
   - [.NET Core and LINQ](#c-with-net-core-and-linq-cconnectfourlinq)
   - [.NET Core and Windows Forms](#c-with-net-core-and-windows-forms-cconnectfourwpf)
-- [C++](#c++)
+- [C++](#c-c)
   - [Windows Library](#c-with-windows-cwindows)
 - [Dart](#dart-dart)
 - [Elixir](#elixir-elixir)
