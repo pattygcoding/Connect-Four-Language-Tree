@@ -7,7 +7,7 @@
   - [x86](#x86-assembly-assemblyx86)
 - [C](#c-c)
   - [Windows Library](#c-with-windows-cwindows)
-- [C#](#c)
+- [C#](#c-c)
   - [.NET Core](#c-with-net-core-cconnectfour)
   - [.NET Core and Entity Framework](#c-with-net-core-and-entity-framework-cconnectfouref)
   - [.NET Core and LINQ](#c-with-net-core-and-linq-cconnectfourlinq)
