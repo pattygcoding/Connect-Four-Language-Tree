@@ -1,6 +1,9 @@
-# Instructions for running program:
-
 ## TypeScript with Angular (typescript/angular):
+**Prerequisite Installations:** 
+- Node.js
+- Angular CLI
+
+**Command:**
 ```
 ng serve --open
 ```
