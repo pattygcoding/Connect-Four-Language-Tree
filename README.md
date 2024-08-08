@@ -1,4 +1,4 @@
-# Connect Four Language Tree
+# Connect Four Language Tree by Patrick Goodwin
 
 ## Instructions for running each program:
 
