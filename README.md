@@ -55,10 +55,7 @@
   - [.NET Core](#vbnet-core-vbnetconnectfour)
   - [.NET Core with Windows Forms](#vbnet-core-with-windows-forms-vbnetconnectfourwpf)
 
-
-## Instructions for running each program:
-
-### Ada (ada):
+## Ada (ada):
 **Prerequisite Installations:** 
 - GNAT (Part of GCC)
 
@@ -68,7 +65,7 @@ gnatmake main.adb
 ./main
 ```
 
-### x64 Assembly (assembly/x64):
+## x64 Assembly (assembly/x64):
 **Prerequisite Installations:** 
 - NASM
 - GNU Binutils (LD)
@@ -82,7 +79,7 @@ ld -s main.o -o main
 rm main main.o
 ```
 
-### x86 Assembly (assembly/x86):
+## x86 Assembly (assembly/x86):
 **Prerequisite Installations:** 
 - NASM
 - GNU Binutils (LD)
@@ -96,7 +93,7 @@ ld -m elf_i386 main.o -o main
 rm main main.o
 ```
 
-### C (c):
+## C (c):
 **Prerequisite Installations:** 
 - GCC
 
@@ -106,7 +103,7 @@ gcc -o connect4 main.c
 ./connect4
 ```
 
-### C with Windows (c/windows):
+## C with Windows (c/windows):
 **Prerequisite Installations:** 
 - GCC
 
@@ -116,7 +113,7 @@ gcc -o main.exe main.c -mwindows
 ./main.exe
 ```
 
-### C# with .NET Core (c#/ConnectFour):
+## C# with .NET Core (c#/ConnectFour):
 **Prerequisite Installations:** 
 - .NET Core SDK
 
@@ -126,7 +123,7 @@ dotnet build
 dotnet run
 ```
 
-### C# with .NET Core and Entity Framework (c#/ConnectFourEF):
+## C# with .NET Core and Entity Framework (c#/ConnectFourEF):
 **Prerequisite Installations:** 
 - .NET Core SDK
 - Entity Framework Core
@@ -137,7 +134,7 @@ dotnet build
 dotnet run
 ```
 
-### C# with .NET Core and LINQ (c#/ConnectFourLinq):
+## C# with .NET Core and LINQ (c#/ConnectFourLinq):
 **Prerequisite Installations:** 
 - .NET Core SDK
 
@@ -147,7 +144,7 @@ dotnet build
 dotnet run
 ```
 
-### C# with .NET Core and Windows Forms (c#/ConnectFourWPF):
+## C# with .NET Core and Windows Forms (c#/ConnectFourWPF):
 **Prerequisite Installations:** 
 - .NET Core SDK
 
@@ -156,7 +153,7 @@ dotnet run
 dotnet run
 ```
 
-### C++ (c++):
+## C++ (c++):
 **Prerequisite Installations:** 
 - G++ (Part of GCC)
 
@@ -166,7 +163,7 @@ g++ -o connect4 main.cpp
 ./connect4
 ```
 
-### C++ with Windows (c++/windows):
+## C++ with Windows (c++/windows):
 **Prerequisite Installations:** 
 - G++ (Part of GCC)
 
@@ -176,7 +173,7 @@ g++ -o main.exe main.cpp -mwindows
 ./main.exe
 ```
 
-### Dart (dart):
+## Dart (dart):
 **Prerequisite Installations:** 
 - Dart SDK
 
@@ -185,7 +182,7 @@ g++ -o main.exe main.cpp -mwindows
 dart run main.dart
 ```
 
-### Elixir (elixir):
+## Elixir (elixir):
 **Prerequisite Installations:** 
 - Erlang
 - Elixir
@@ -195,7 +192,7 @@ dart run main.dart
 elixir main.exs
 ```
 
-### F# with .NET Core (f#/ConnectFourWPF):
+## F# with .NET Core (f#/ConnectFourWPF):
 **Prerequisite Installations:** 
 - .NET Core SDK
 
@@ -204,7 +201,7 @@ elixir main.exs
 dotnet run
 ```
 
-### Fortran (fortran):
+## Fortran (fortran):
 **Prerequisite Installations:** 
 - GFortran (part of GCC)
 
@@ -214,7 +211,7 @@ gfortran -o ConnectFour main.f90
 ./ConnectFour
 ```
 
-### Golang (golang):
+## Golang (golang):
 **Prerequisite Installations:** 
 - Go
 
@@ -223,7 +220,7 @@ gfortran -o ConnectFour main.f90
 go run main.go
 ```
 
-### Groovy (groovy):
+## Groovy (groovy):
 **Prerequisite Installations:** 
 - Java Development Kit (JDK)
 - Groovy
@@ -233,7 +230,7 @@ go run main.go
 groovy Main.groovy
 ```
 
-### Haskell (haskell):
+## Haskell (haskell):
 **Prerequisite Installations:** 
 - GHC (Glasgow Haskell Compiler)
 
@@ -243,7 +240,7 @@ ghc -o ConnectFour main.hs
 ./ConnectFour
 ```
 
-### Java (java):
+## Java (java):
 **Prerequisite Installations:** 
 - Java Development Kit (JDK)
 
@@ -253,10 +250,10 @@ javac Main.java
 java Main
 ```
 
-### Java with SpringBoot (java/springboot):
+## Java with SpringBoot (java/springboot):
 Code documentation only, see the directory README for more information
 
-### JavaScript with HTML5 & CSS3 (javascript/html-css):
+## JavaScript with HTML5 & CSS3 (javascript/html-css):
 **Prerequisite Installations:** 
 - Python (for HTTP server)
 
@@ -266,7 +263,7 @@ python -m http.server
 ```
 Then visit the link http://localhost:8000/index.html
 
-### JavaScript with MySQL (javascript/mysql):
+## JavaScript with MySQL (javascript/mysql):
 **Prerequisite Installations:** 
 - Node.js
 - MySQL
@@ -276,7 +273,7 @@ Then visit the link http://localhost:8000/index.html
 node main.js
 ```
 
-### JavaScript with MongoDB & NoSQL (javascript/mongodb-nosql):
+## JavaScript with MongoDB & NoSQL (javascript/mongodb-nosql):
 **Prerequisite Installations:** 
 - Node.js
 - MongoDB
@@ -286,7 +283,7 @@ node main.js
 node main.js
 ```
 
-### JavaScript with Next.js (javascript/next):
+## JavaScript with Next.js (javascript/next):
 **Prerequisite Installations:** 
 - Node.js
 - Next.js
@@ -297,7 +294,7 @@ npm run dev
 ```
 Then visit the link http://localhost:3000/main
 
-### JavaScript with Node.js (javascript/node):
+## JavaScript with Node.js (javascript/node):
 **Prerequisite Installations:** 
 - Node.js
 
@@ -306,7 +303,7 @@ Then visit the link http://localhost:3000/main
 node main.js
 ```
 
-### JavaScript with Vue.js (javascript/vue):
+## JavaScript with Vue.js (javascript/vue):
 **Prerequisite Installations:** 
 - Node.js
 - Vue CLI
@@ -317,7 +314,7 @@ npm run serve
 ```
 Then visit the link http://localhost:8080
 
-### JavaScript with Vue.js using AI (javascript/vueai):
+## JavaScript with Vue.js using AI (javascript/vueai):
 **Prerequisite Installations:** 
 - Node.js
 - Vue CLI
@@ -328,7 +325,7 @@ npm run serve
 ```
 Then visit the link http://localhost:8080
 
-### Kotlin (kotlin):
+## Kotlin (kotlin):
 **Prerequisite Installations:** 
 - Java Development Kit (JDK)
 - Kotlin 
@@ -339,7 +336,7 @@ kotlinc main.kt -include-runtime -d main.jar
 java -jar main.jar
 ```
 
-### Lua (lua):
+## Lua (lua):
 **Prerequisite Installations:** 
 - Lua
 
@@ -348,7 +345,7 @@ java -jar main.jar
 lua main.lua
 ```
 
-### OCaml (ocaml)
+## OCaml (ocaml)
 **Prerequisite Installations:** 
 - OCAML Compiler
 
@@ -358,7 +355,7 @@ ocamlc -o main main.ml
 ./main
 ```
 
-### Pascal (pascal):
+## Pascal (pascal):
 **Prerequisite Installations:** 
 - FPC (Free Pascal Compiler)
 
@@ -368,7 +365,7 @@ fpc main.pas
 ./main
 ```
 
-### Perl (perl):
+## Perl (perl):
 **Prerequisite Installations:** 
 - Perl
 
@@ -377,7 +374,7 @@ fpc main.pas
 perl main.pl
 ```
 
-### PHP (php):
+## PHP (php):
 **Prerequisite Installations:** 
 - PHP
 
@@ -386,7 +383,7 @@ perl main.pl
 php main.php
 ```
 
-### PHP from Web Browser (php):
+## PHP from Web Browser (php):
 **Prerequisite Installations:** 
 - PHP
 
@@ -397,7 +394,7 @@ php -S localhost:8000
 ```
 Then visit http://localhost:8000/main.php
 
-### PowerShell (powershell):
+## PowerShell (powershell):
 **Prerequisite Installations:** 
 - Powershell
 
@@ -406,7 +403,7 @@ Then visit http://localhost:8000/main.php
 ./ConnectFour/ps1
 ```
 
-### Prolog (prolog):
+## Prolog (prolog):
 **Prerequisite Installations:** 
 - SWI-Prolog
 
@@ -415,7 +412,7 @@ Then visit http://localhost:8000/main.php
 swipl -q -s main.pl
 ```
 
-### Python (python):
+## Python (python):
 **Prerequisite Installations:** 
 - Python
 
@@ -424,7 +421,7 @@ swipl -q -s main.pl
 python main.py
 ```
 
-### Python with JSON (python):
+## Python with JSON (python):
 **Prerequisite Installations:** 
 - Python
 
@@ -433,7 +430,7 @@ python main.py
 python main.py
 ```
 
-### Python with Tkinter (python/tkinter):
+## Python with Tkinter (python/tkinter):
 **Prerequisite Installations:** 
 - Python (Make sure Tkinter is included with your installation)
 
@@ -442,7 +439,7 @@ python main.py
 python main.py
 ```
 
-### Ruby (ruby):
+## Ruby (ruby):
 **Prerequisite Installations:** 
 - Ruby
 
@@ -451,7 +448,7 @@ python main.py
 ruby main.rb
 ```
 
-### Rust (rust):
+## Rust (rust):
 **Prerequisite Installations:** 
 - Rust Cargo
 
@@ -462,7 +459,7 @@ cargo build
 rm target/debug/connect-four
 ```
 
-### Scala (scala):
+## Scala (scala):
 **Prerequisite Installations:** 
 - Scala
 
@@ -471,7 +468,7 @@ rm target/debug/connect-four
 scala main.scala
 ```
 
-### Swift (swift):
+## Swift (swift):
 **Prerequisite Installations:** 
 - Swift
 - MacOS or a virtual env that can run Swift
@@ -482,7 +479,7 @@ swiftc main.swift -o main
 ./main
 ```
 
-### TypeScript with Angular (typescript/angular):
+## TypeScript with Angular (typescript/angular):
 **Prerequisite Installations:** 
 - Node.js
 - Angular CLI
@@ -492,7 +489,7 @@ swiftc main.swift -o main
 ng serve --open
 ```
 
-### TypeScript with Node.js (typescript/node):
+## TypeScript with Node.js (typescript/node):
 **Prerequisite Installations:** 
 - Node.js
 - TypeScript
@@ -503,7 +500,7 @@ tsc main.ts
 node main.js
 ```
 
-### VB.NET Core (vbnet/ConnectFour)
+## VB.NET Core (vbnet/ConnectFour)
 **Prerequisite Installations:** 
 - .NET Core SDK
 
@@ -512,7 +509,7 @@ node main.js
 dotnet run
 ```
 
-### VB.NET Core with Windows Forms (vbnet/ConnectFourWPF)
+## VB.NET Core with Windows Forms (vbnet/ConnectFourWPF)
 **Prerequisite Installations:** 
 - .NET Core SDK
 
@@ -521,5 +518,5 @@ dotnet run
 dotnet run
 ```
 
-### Bash (bash):
+## Bash (bash):
 Work in progress
