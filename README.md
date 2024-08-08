@@ -35,7 +35,7 @@
 - [Kotlin](#kotlin-kotlin)
 - [Lua](#lua-lua)
 - [OCaml](#ocaml-ocaml)
-- [Pascal)](#pascal-pascal)
+- [Pascal](#pascal-pascal)
 - [Perl](#perl-perl)
 - [PHP](#php-php)
   - [Web Browser](#php-from-web-browser-php)
