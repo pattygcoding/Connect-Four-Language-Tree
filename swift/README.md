@@ -1,6 +1,7 @@
 # Instructions for running program:
 
-## Scala (scala):
+## Swift (swift):
 ```
-scala main.scala
+swiftc main.swift -o main
+./main
 ```
