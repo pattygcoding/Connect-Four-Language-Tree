@@ -1,6 +1,8 @@
-# Instructions for running program:
-
 ## Rust (rust):
+**Prerequisite Installations:** 
+- Rust Cargo
+
+**Command:**
 ```
 cargo build
 ./target/debug/connect-four
