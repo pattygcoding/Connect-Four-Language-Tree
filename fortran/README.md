@@ -1,4 +1,4 @@
-# Connect Four Language Tree
+# Instructions for running program:
 
 ## Fortran (fortran):
 ```
