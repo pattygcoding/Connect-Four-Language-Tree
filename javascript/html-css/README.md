@@ -1,6 +1,8 @@
-# Instructions for running program:
-
 ## JavaScript with HTML5 & CSS3 (javascript/html-css):
+**Prerequisite Installations:** 
+- Python (for HTTP server)
+
+**Command:**
 ```
 python -m http.server
 ```
