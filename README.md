@@ -3,7 +3,7 @@
 ## Table of Contents
 - [Ada](#ada-ada)
 - Assembly
-  - [x64)](#x64-assembly-assemblyx64)
+  - [x64](#x64-assembly-assemblyx64)
   - [x86](#x86-assembly-assemblyx86)
 - [C](#c-c)
   - [Windows Library](#c-with-windows-cwindows)
