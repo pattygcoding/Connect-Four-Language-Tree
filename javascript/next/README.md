@@ -5,6 +5,16 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 First, run the development server:
 
 ```bash
+# Instructions for running program:
+
+## JavaScript with Next.js (javascript/next):
+```
+npm run dev
+```
+Then visit the link http://localhost:3000/main
+
+## Default Next.js README:
+
 npm run dev
 # or
 yarn dev
