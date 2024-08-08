@@ -1,6 +1,8 @@
-# Instructions for running program:
-
 ## Python (python):
+**Prerequisite Installations:** 
+- Python
+
+**Command:**
 ```
 python main.py
 ```
