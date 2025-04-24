@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Connect Four (Go + WASM)</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            padding: 1em;
+            background: #111;
+            color: #eee;
+        }
+
+        button {
+            margin: 0.25em;
+            padding: 0.5em 1em;
+        }
+
+        pre {
+            background: #222;
+            padding: 1em;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Connect Four (Go + WASM)</h1>
+    <div id="buttons"></div>
+    <pre id="board">Loading...</pre>
+    <script src="wasm_exec.js"></script>
+    <script>
+        const go = new Go();
+        WebAssembly.instantiateStreaming(fetch("connect-four-go.wasm"), go.importObject).then(result => {
+            go.run(result.instance);
+            const boardEl = document.getElementById("board");
+
+            function updateBoard() {
+                boardEl.textContent = renderBoard();
+            }
+
+            function makeMove(col) {
+  const result = dropPiece(col);
+  boardEl.textContent = result;
+}
+
+
+            const btns = document.getElementById("buttons");
+            for (let i = 0; i < 7; i++) {
+                const btn = document.createElement("button");
+                btn.textContent = `Drop in ${i}`;
+                btn.onclick = () => makeMove(i);
+                btns.appendChild(btn);
+            }
+
+            // Wait until Go sets up the WASM functions
+setTimeout(() => {
+  if (typeof renderBoard === 'function') {
+    boardEl.textContent = renderBoard();
+  } else {
+    boardEl.textContent = "WASM loaded but functions not initialized.";
+  }
+}, 100);
+
+        });
+    </script>
+</body>
+
+</html>
