@@ -1,5 +1,7 @@
 # Connect Four - VB.NET
 
+[![VB.NET](https://img.shields.io/badge/VB.NET-512BD4?style=for-the-badge&logo=.net&logoColor=white)](https://docs.microsoft.com/en-us/dotnet/visual-basic/)
+
 Multiple implementations of Connect Four game using VB.NET with different UI frameworks.
 
 ## Available Implementations
