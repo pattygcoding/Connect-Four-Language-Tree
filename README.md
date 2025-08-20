@@ -503,6 +503,7 @@ python main.py
 **Command:**
 ```
 python main.py
+```
 
 ## Python with JSON (python):
 **Prerequisite Installations:** 
@@ -602,4 +603,102 @@ dotnet run
 ```
 
 ## Bash (bash):
-Work in progress
+**Status:** Work in progress
+
+## 🎯 How to Use
+
+1. **Choose Your Language**: Browse through the available implementations and select the programming language or framework you want to explore.
+
+2. **Navigate to Directory**: Each language has its own directory with specific instructions.
+
+3. **Install Prerequisites**: Follow the prerequisite installation instructions for your chosen implementation.
+
+4. **Run the Game**: Execute the provided commands to start playing Connect Four.
+
+5. **Explore the Code**: Each implementation includes well-commented source code demonstrating language-specific features and best practices.
+
+## 🚀 Getting Started
+
+For beginners, we recommend starting with these implementations:
+- **Python**: Simple syntax and great for learning programming concepts
+- **JavaScript (HTML/CSS)**: Easy to run in any web browser
+- **Java**: Excellent for understanding object-oriented programming
+
+For advanced developers, explore:
+- **Rust**: Memory safety and performance
+- **Haskell**: Functional programming paradigms
+- **Assembly**: Low-level hardware interaction
+
+## 📁 Repository Structure
+
+```
+Connect-Four-Language-Tree/
+├── ada/                    # Ada implementation
+├── assembly/               # Assembly implementations (x64, x86)
+├── bash/                   # Bash scripting version
+├── c/                      # C implementation
+├── c++/                    # C++ implementation
+├── c#/                     # C# with various .NET frameworks
+├── clojure/                # Clojure functional implementation
+├── dart/                   # Dart implementation
+├── elixir/                 # Elixir actor model implementation
+├── javascript/             # Multiple JS framework implementations
+├── python/                 # Python with various libraries
+├── typescript/             # TypeScript implementations
+└── ...                     # And many more!
+```
+
+## 🤝 Contributing
+
+We welcome contributions! Here's how you can help:
+
+1. **Add New Languages**: Implement Connect Four in additional programming languages
+2. **Improve Existing Code**: Optimize current implementations or add new features
+3. **Documentation**: Enhance README files or add code comments
+4. **Bug Fixes**: Report and fix any issues you encounter
+
+### Contribution Guidelines
+- Maintain consistent game logic across all implementations
+- Include clear installation and running instructions
+- Add comprehensive code comments
+- Follow the existing directory structure
+- Test your implementation thoroughly
+
+## 📊 Implementation Statistics
+
+- **Total Languages**: 30+
+- **Framework Variations**: 15+
+- **Database Integrations**: 2 (MySQL, MongoDB)
+- **UI Frameworks**: 10+ (Windows Forms, Vue.js, Angular, Next.js, etc.)
+- **Paradigms Covered**: Procedural, OOP, Functional, Actor Model
+
+## 🎮 Game Features
+
+All implementations include:
+- ✅ Classic Connect Four gameplay
+- ✅ Two-player turn-based mechanics
+- ✅ Win condition detection (horizontal, vertical, diagonal)
+- ✅ Input validation and error handling
+- ✅ Game state display
+
+Advanced features (implementation-dependent):
+- 🤖 AI opponents
+- 🌐 Web-based interfaces
+- 💾 Game save/load functionality
+- 🎨 Custom themes and styling
+- 📊 Statistics tracking
+
+## 📞 Contact
+
+**Patrick Goodwin**
+- GitHub: [@pattygcoding](https://github.com/pattygcoding)
+
+## 📄 License
+
+This project is open source and available under the [MIT License](LICENSE).
+
+---
+
+⭐ **If you found this project helpful, please give it a star!** ⭐
+
+*Demonstrating that great games can be built with any technology stack.*
