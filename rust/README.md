@@ -4,16 +4,26 @@
 
 Implementation of Connect Four game in Rust, a systems programming language focused on safety, speed, and concurrency.
 
-## Running the Game
+## Available Implementations
 
+### Console Implementation
 **Prerequisite Installations:** 
 - Rust Cargo
 
 **Command:**
 ```bash
+cargo run
+```
+
+### Advanced Implementation (connect-four)
+**Prerequisite Installations:** 
+- Rust Cargo
+
+**Commands:**
+```bash
+cd connect-four
 cargo build
 ./target/debug/connect-four
-rm target/debug/connect-four
 ```
 
 ## About

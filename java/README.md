@@ -4,8 +4,9 @@
 
 Implementation of Connect Four game in Java, a class-based object-oriented programming language designed for portability and enterprise applications.
 
-## Running the Game
+## Available Implementations
 
+### Standard Java Implementation
 **Prerequisite Installations:** 
 - Java Development Kit (JDK)
 
@@ -15,14 +16,27 @@ javac Main.java
 java Main
 ```
 
+### Spring Boot Web Application (springboot)
+**Prerequisite Installations:** 
+- Java Development Kit (JDK)
+- Maven
+
+**Commands:**
+```bash
+cd springboot
+mvn spring-boot:run
+```
+
 ## About
 
-This implementation demonstrates Java's core principles and enterprise-grade features, including:
+This collection demonstrates Java's versatility across different application types:
+- **Console Application**: Traditional command-line interface with core Java features
+- **Web Application**: Modern Spring Boot web service with RESTful APIs and web interface
+
+Features showcased:
 - Platform independence with "Write Once, Run Anywhere"
 - Strong object-oriented programming with inheritance and polymorphism
-- Automatic memory management with garbage collection
-- Static typing with compile-time error checking
-- Rich standard library and vast ecosystem
-- Thread safety and concurrent programming support
-
-The game showcases how Java's robust architecture and mature ecosystem make it ideal for building scalable, maintainable applications.
+- Enterprise-grade frameworks with Spring Boot
+- Web development with embedded servers and auto-configuration
+- Dependency injection and aspect-oriented programming
+- Rich ecosystem with Maven build management

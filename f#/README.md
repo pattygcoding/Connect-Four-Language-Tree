@@ -4,13 +4,15 @@
 
 Implementation of Connect Four game in F#, a functional-first programming language that runs on .NET.
 
-## Running the Game
+## Available Implementations
 
+### .NET Core Console Implementation (ConnectFour)
 **Prerequisite Installations:** 
 - .NET Core SDK
 
 **Command:**
 ```bash
+cd ConnectFour
 dotnet run
 ```
 
