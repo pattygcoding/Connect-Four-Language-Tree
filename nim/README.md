@@ -1,5 +1,7 @@
 # Connect Four - Nim
 
+[![Nim](https://img.shields.io/badge/Nim-FFE953?style=for-the-badge&logo=nim&logoColor=black)](https://nim-lang.org/)
+
 Implementation of Connect Four game in Nim, a statically typed compiled systems programming language.
 
 ## Running the Game
