@@ -1,5 +1,7 @@
 # Connect Four - Erlang
 
+[![Erlang](https://img.shields.io/badge/Erlang-A90533?style=for-the-badge&logo=erlang&logoColor=white)](https://www.erlang.org/)
+
 Implementation of Connect Four game in Erlang, a functional programming language designed for fault-tolerant systems.
 
 ## Running the Game

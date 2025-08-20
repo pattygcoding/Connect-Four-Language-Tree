@@ -1,5 +1,7 @@
 # Connect Four - Zig
 
+[![Zig](https://img.shields.io/badge/Zig-F7A41D?style=for-the-badge&logo=zig&logoColor=white)](https://ziglang.org/)
+
 Implementation of Connect Four game in Zig, a general-purpose programming language designed for optimal performance and safety.
 
 ## Running the Game

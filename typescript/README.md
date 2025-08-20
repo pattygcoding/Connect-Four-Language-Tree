@@ -1,5 +1,7 @@
 # Connect Four - TypeScript
 
+[![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+
 Multiple implementations of Connect Four game using TypeScript with different frameworks.
 
 ## Available Implementations

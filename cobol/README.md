@@ -1,5 +1,7 @@
 # Connect Four - COBOL
 
+[![COBOL](https://img.shields.io/badge/COBOL-005CA5?style=for-the-badge&logo=cobol&logoColor=white)](https://www.ibm.com/products/cobol-compiler)
+
 Implementation of Connect Four game in COBOL (Common Business-Oriented Language).
 
 ## Running the Game

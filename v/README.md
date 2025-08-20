@@ -1,5 +1,7 @@
 # Connect Four - V
 
+[![V](https://img.shields.io/badge/V-5d87BF?style=for-the-badge&logo=v&logoColor=white)](https://vlang.io/)
+
 Implementation of Connect Four game in V, a simple, fast, safe, compiled programming language.
 
 ## Running the Game
