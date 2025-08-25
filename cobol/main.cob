@@ -6,7 +6,8 @@
        DATA DIVISION.
        WORKING-STORAGE SECTION.
        01  BOARD.
-           05  ROW PIC X(7) OCCURS 6 TIMES.
+           05  ROW OCCURS 6 TIMES.
+               10 CELL PIC X OCCURS 7 TIMES.
        01  PLAYER-X PIC X VALUE 'X'.
        01  PLAYER-O PIC X VALUE 'O'.
        01  CURRENT-PLAYER PIC X.
@@ -42,7 +43,7 @@
        INITIALIZE-BOARD.
            PERFORM VARYING I FROM 1 BY 1 UNTIL I > 6
                PERFORM VARYING J FROM 1 BY 1 UNTIL J > 7
-                   MOVE ' ' TO BOARD (I:J)
+                   MOVE ' ' TO CELL (I, J)
                END-PERFORM
            END-PERFORM.
 
@@ -50,10 +51,10 @@
            DISPLAY " 1 2 3 4 5 6 7"
            PERFORM VARYING I FROM 1 BY 1 UNTIL I > 6
                DISPLAY "---------------"
-               DISPLAY BOARD (I:1) " | " BOARD (I:2) " | " 
-                       BOARD (I:3) " | " BOARD (I:4) " | " 
-                       BOARD (I:5) " | " BOARD (I:6) " | " 
-                       BOARD (I:7)
+               DISPLAY CELL (I, 1) " | " CELL (I, 2) " | " 
+                       CELL (I, 3) " | " CELL (I, 4) " | " 
+                       CELL (I, 5) " | " CELL (I, 6) " | " 
+                       CELL (I, 7)
            END-PERFORM
            DISPLAY "---------------".
 
@@ -75,7 +76,7 @@
        CHECK-COLUMN-FULL.
            MOVE 'Y' TO VALID-MOVE
            PERFORM VARYING I FROM 1 BY 1 UNTIL I > 6
-               IF BOARD (I:INPUT-COLUMN) = ' ' THEN
+               IF CELL (I, INPUT-COLUMN) = ' ' THEN
                    MOVE 'N' TO VALID-MOVE
                    EXIT PERFORM
                END-IF
@@ -83,8 +84,8 @@
 
        MAKE-MOVE.
            PERFORM VARYING I FROM 6 BY -1 UNTIL I < 1
-               IF BOARD (I:INPUT-COLUMN) = ' ' THEN
-                   MOVE CURRENT-PLAYER TO BOARD (I:INPUT-COLUMN)
+               IF CELL (I, INPUT-COLUMN) = ' ' THEN
+                   MOVE CURRENT-PLAYER TO CELL (I, INPUT-COLUMN)
                    EXIT PERFORM
                END-IF
            END-PERFORM.
@@ -104,10 +105,10 @@
        CHECK-HORIZONTAL.
            PERFORM VARYING I FROM 1 BY 1 UNTIL I > 6
                PERFORM VARYING J FROM 1 BY 1 UNTIL J > 4
-                   IF BOARD (I:J) = CURRENT-PLAYER AND
-                      BOARD (I:J + 1) = CURRENT-PLAYER AND
-                      BOARD (I:J + 2) = CURRENT-PLAYER AND
-                      BOARD (I:J + 3) = CURRENT-PLAYER THEN
+                   IF CELL (I, J) = CURRENT-PLAYER AND
+                      CELL (I, J + 1) = CURRENT-PLAYER AND
+                      CELL (I, J + 2) = CURRENT-PLAYER AND
+                      CELL (I, J + 3) = CURRENT-PLAYER THEN
                        MOVE CURRENT-PLAYER TO WINNER
                    END-IF
                END-PERFORM
@@ -116,10 +117,10 @@
        CHECK-VERTICAL.
            PERFORM VARYING J FROM 1 BY 1 UNTIL J > 7
                PERFORM VARYING I FROM 1 BY 1 UNTIL I > 3
-                   IF BOARD (I:J) = CURRENT-PLAYER AND
-                      BOARD (I + 1:J) = CURRENT-PLAYER AND
-                      BOARD (I + 2:J) = CURRENT-PLAYER AND
-                      BOARD (I + 3:J) = CURRENT-PLAYER THEN
+                   IF CELL (I, J) = CURRENT-PLAYER AND
+                      CELL (I + 1, J) = CURRENT-PLAYER AND
+                      CELL (I + 2, J) = CURRENT-PLAYER AND
+                      CELL (I + 3, J) = CURRENT-PLAYER THEN
                        MOVE CURRENT-PLAYER TO WINNER
                    END-IF
                END-PERFORM
@@ -128,20 +129,20 @@
        CHECK-DIAGONAL.
            PERFORM VARYING I FROM 1 BY 1 UNTIL I > 3
                PERFORM VARYING J FROM 1 BY 1 UNTIL J > 4
-                   IF BOARD (I:J) = CURRENT-PLAYER AND
-                      BOARD (I + 1:J + 1) = CURRENT-PLAYER AND
-                      BOARD (I + 2:J + 2) = CURRENT-PLAYER AND
-                      BOARD (I + 3:J + 3) = CURRENT-PLAYER THEN
+                   IF CELL (I, J) = CURRENT-PLAYER AND
+                      CELL (I + 1, J + 1) = CURRENT-PLAYER AND
+                      CELL (I + 2, J + 2) = CURRENT-PLAYER AND
+                      CELL (I + 3, J + 3) = CURRENT-PLAYER THEN
                        MOVE CURRENT-PLAYER TO WINNER
                    END-IF
                END-PERFORM
            END-PERFORM
            PERFORM VARYING I FROM 4 BY 1 UNTIL I > 6
                PERFORM VARYING J FROM 1 BY 1 UNTIL J > 4
-                   IF BOARD (I:J) = CURRENT-PLAYER AND
-                      BOARD (I - 1:J + 1) = CURRENT-PLAYER AND
-                      BOARD (I - 2:J + 2) = CURRENT-PLAYER AND
-                      BOARD (I - 3:J + 3) = CURRENT-PLAYER THEN
+                   IF CELL (I, J) = CURRENT-PLAYER AND
+                      CELL (I - 1, J + 1) = CURRENT-PLAYER AND
+                      CELL (I - 2, J + 2) = CURRENT-PLAYER AND
+                      CELL (I - 3, J + 3) = CURRENT-PLAYER THEN
                        MOVE CURRENT-PLAYER TO WINNER
                    END-IF
                END-PERFORM
@@ -151,7 +152,7 @@
            MOVE 'Y' TO BOARD-FULL
            PERFORM VARYING I FROM 1 BY 1 UNTIL I > 6
                PERFORM VARYING J FROM 1 BY 1 UNTIL J > 7
-                   IF BOARD (I:J) = ' ' THEN
+                   IF CELL (I, J) = ' ' THEN
                        MOVE 'N' TO BOARD-FULL
                        EXIT PERFORM
                    END-IF
