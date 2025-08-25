@@ -35,13 +35,14 @@ class ConnectFour:
         return False
 
     def check_direction(self, row, col, d_row, d_col):
+        player = self.board[row][col]  # Get the player at the starting position
         consecutive_count = 0
         for i in range(4):
             r = row + i * d_row
             c = col + i * d_col
             if r < 0 or r >= self.ROWS or c < 0 or c >= self.COLS:
                 return False
-            if self.board[r][c] == self.current_player:
+            if self.board[r][c] == player:
                 consecutive_count += 1
             else:
                 break
