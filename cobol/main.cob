@@ -1,5 +1,5 @@
        IDENTIFICATION DIVISION.
-       PROGRAM-ID. main.
+       PROGRAM-ID. CONNECT-FOUR.
 
        ENVIRONMENT DIVISION.
 
@@ -61,15 +61,16 @@
        GET-PLAYER-MOVE.
            MOVE 'N' TO VALID-MOVE
            PERFORM UNTIL VALID-MOVE = 'Y'
-               DISPLAY "Player " CURRENT-PLAYER ", choose a column (1-7):"
+               DISPLAY "Player " CURRENT-PLAYER 
+                       ", choose a column (1-7):"
                ACCEPT INPUT-COLUMN
                IF INPUT-COLUMN >= 1 AND INPUT-COLUMN <= 7 THEN
                    PERFORM CHECK-COLUMN-FULL
                    IF VALID-MOVE = 'N' THEN
-                       DISPLAY "Column is full. Try another column."
+                       DISPLAY "Column is full. Try another."
                    END-IF
                ELSE
-                   DISPLAY "Invalid column. Enter a number between 1 and 7."
+                   DISPLAY "Invalid column. Enter 1 to 7."
                END-IF
            END-PERFORM.
 
